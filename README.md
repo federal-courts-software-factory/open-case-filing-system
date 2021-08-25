@@ -1,4 +1,4 @@
-# Open-Case-Filing-System
+# Open Case Filing System
 
 ## License
 This project is in the worldwide public domain.
