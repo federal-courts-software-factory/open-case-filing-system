@@ -1,4 +1,6 @@
 # Open Case Filing System
+Open Case Filing System (OCFS) is a modern platform to help courts administer justice through the judicial process. The OCFS platform handles day to day court business in a seamless process. This is a full replacement of the CMECF system and is created by the Federal Court Software Factory, the engineering arm of the judiciary.
+
 
 ## License
 This project is in the worldwide public domain.
