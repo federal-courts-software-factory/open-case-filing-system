@@ -10,9 +10,12 @@ use serde_json::json;
 
 use crate::{
     model::{NoteModel, CaseModel},
-    schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema},
+    schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema, CreateCourtCaseSchema, UpdateCourtCaseSchema},
     AppState,
 };
+use anyhow::Result; // Import Result from anyhow
+
+
 
 pub async fn health_checker_handler() -> impl IntoResponse {
     const MESSAGE: &str = "Open Case Filing System -- Docket API is Healthy";
@@ -201,7 +204,6 @@ pub async fn delete_note_handler(
 
 
 
-
 // GET CASE DATA
 
 pub async fn case_list_handler(
@@ -239,3 +241,50 @@ pub async fn case_list_handler(
     });
     Ok(Json(json_response))
 }
+
+
+// pub async fn create_court_case(
+//     State(data): State<Arc<AppState>>,
+//     Json(body): Json<CreateCourtCaseSchema>,
+// ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
+//     let query_result = sqlx::query!(
+//         r#"
+//         INSERT INTO court_cases (case_number, title, filing_date, court_status, courtroom_id, scheduled_date)
+//         VALUES ($1, $2, $3, $4, $5, $6)
+//         RETURNING id
+//         "#,
+//         new_case.case_number,
+//         new_case.title,
+//         new_case.filing_date,
+//         new_case.court_status,
+//         new_case.courtroom_id,
+//         new_case.scheduled_date
+//     )
+//     .fetch_one(&data.db)
+//     .await;
+
+//     match query_result {
+//         Ok(note) => {
+//             let note_response = json!({"status": "success","data": json!({
+//                 "note": note
+//             })});
+
+//             return Ok((StatusCode::CREATED, Json(note_response)));
+//         }
+//         Err(e) => {
+//             if e.to_string()
+//                 .contains("duplicate key value violates unique constraint")
+//             {
+//                 let error_response = serde_json::json!({
+//                     "status": "fail",
+//                     "message": "Note with that title already exists",
+//                 });
+//                 return Err((StatusCode::CONFLICT, Json(error_response)));
+//             }
+//             return Err((
+//                 StatusCode::INTERNAL_SERVER_ERROR,
+//                 Json(json!({"status": "error","message": format!("{:?}", e)})),
+//             ));
+//         }
+//     }
+// }

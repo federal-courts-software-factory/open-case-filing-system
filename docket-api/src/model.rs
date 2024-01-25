@@ -46,7 +46,7 @@ pub struct CaseModel {
     pub case_number: Option<String>,
     pub title: Option<String>,
     pub filing_date: Option<NaiveDate>,
-    pub case_status: Option<String>, // Consider using an Enum for status
+    pub case_status: Option<String>,
     pub courtroom_id: Option<Uuid>,
     pub scheduled_date: Option<NaiveDate>,
     pub last_modified_by: Option<Uuid>,
@@ -167,4 +167,3 @@ pub struct FinancialTransaction {
     pub transaction_date: Option<chrono::DateTime<chrono::Utc>>,
     pub description: String,
 }
-

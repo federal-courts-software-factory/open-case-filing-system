@@ -1,6 +1,11 @@
 -- Add migration script here
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Contemplation of enums here. Enums make the db less portable.
+-- We don't care about storage space. And it abstracts logic from users and makes
+-- Application evelopers make decision that could make the system too rigid for future use.
+-- CREATE TYPE case_status AS ENUM ('Open', 'Closed', 'Pending');
+-- CREATE TYPE party_type AS ENUM ('Plaintiff', 'Defendant');
 
 CREATE TABLE
     IF NOT EXISTS notes (
@@ -28,8 +33,7 @@ CREATE TABLE
     country VARCHAR(255)
 );
 
-CREATE TYPE case_status AS ENUM ('Open', 'Closed', 'Pending');
-CREATE TYPE party_type AS ENUM ('Plaintiff', 'Defendant');
+
 
 --This table will store different roles.
 CREATE TABLE
@@ -52,10 +56,10 @@ CREATE TABLE
     username VARCHAR(255) UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    role_id UUID,
+    role_name VARCHAR(255) NOT NULL DEFAULT 'public',
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMPTZ,
-    FOREIGN KEY (role_id) REFERENCES roles(id)
+    FOREIGN KEY (role_name) REFERENCES roles(name)
 );
 
 --Since a user can have multiple roles and a role can belong to multiple users, you need an association table.
@@ -73,17 +77,17 @@ CREATE TABLE IF NOT EXISTS courtrooms (
     name VARCHAR(255),
     location TEXT
 );
-
+-- Relationship should be assigned to a judge and then a courtroom. 
+-- This is wrong.
 CREATE TABLE
     IF NOT EXISTS court_cases (
         id UUID PRIMARY KEY NOT NULL DEFAULT (uuid_generate_v4()),
         case_number VARCHAR(50) UNIQUE,
         title VARCHAR(255),
         filing_date DATE,
-        case_status VARCHAR(10),
+        case_status VARCHAR(255),
         courtroom_id UUID,
-        scheduled_date DATE,
-        FOREIGN KEY (courtroom_id) REFERENCES courtrooms(id)
+        scheduled_date DATE
 );
 
 
@@ -119,7 +123,7 @@ CREATE TABLE
 CREATE TABLE IF NOT EXISTS parties (
     id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
     name VARCHAR(255) NOT NULL,
-    type party_type NOT NULL,
+    type VARCHAR(255) NOT NULL,
     representation_id UUID NOT NULL,
     FOREIGN KEY (representation_id) REFERENCES lawyers(id)
 );
@@ -384,7 +388,7 @@ CREATE INDEX idx_documents_submitter ON documents (submitted_by);
 --
 CREATE INDEX idx_user_roles_user ON user_roles (user_id);
 --
-CREATE INDEX idx_user_roles_role ON user_roles (role_id);
+CREATE INDEX idx_user_roles_role ON user_roles (role_name);
 
 CREATE INDEX idx_parties_name ON parties (name);
 
@@ -395,4 +399,8 @@ INSERT INTO roles (name, description) VALUES
 ('clerk', 'A user with clerk privileges'),
 ('clerkofcourt', 'A user with clerk of court privileges'),
 ('judge', 'A user with judge privileges'),
-('public', 'A user with public privileges')
+('public', 'A user with public privileges');
+
+
+INSERT INTO users (username, password_hash, email, role_name)
+VALUES ('new_user', 'hashed_password', 'user@example.com', 'public');
