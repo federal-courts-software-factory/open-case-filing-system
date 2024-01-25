@@ -10,20 +10,18 @@ Open Case Filing System (OCFS) is a modern platform designed to facilitate and s
 
 ## Database Setup
 
-# Explanation:
-# This section outlines how to set up the database for the project.
+### This section outlines how to set up the database for the project.
+    1. `cd docket-api && cargo run`
+    2. `sqlx database create` 
+    3. `sqlx migrate run`
 
-`sqlx database create` 
-`cd docket-api && cargo run`
 
-# Explanation:
-# Run the `sqlx database create` command to create the database. Then, navigate to the 'docket-api' directory and execute `cargo run` to run the application.
 
-### Database Troubleshooting
+## Database Troubleshooting
 
-# Explanation:
-# Troubleshooting steps for database-related issues.
 
+### Troubleshooting steps for database-related issues.
+#### Remove everything and migrate the schema.
 ** Warning this will completely destroy your database. **
 >> `sqlx database drop -f; sqlx database create; sqlx migrate run`
 
