@@ -1,6 +1,12 @@
 # Open Case Filing System
-Open Case Filing System (OCFS) is a modern platform to help courts administer justice through the judicial process. The OCFS platform handles day to day court business in a seamless process. This is a full replacement of the CMECF system and is created by the Federal Court Software Factory, the engineering arm of the judiciary.
+Open Case Filing System (OCFS) is a modern platform designed to facilitate and streamline court proceedings, providing an efficient solution for managing day-to-day court business.
 
+## Setup:
+1. Open Visual Studio Code.
+2. Ensure that Docker is running on your local machine.
+3. Use the following hotkey in VS Code: Ctrl + SHIFT + P.
+4. Search for "dev containers" and select "Rebuild Container."
+5. Load the code in a container (devcontainer)
 
 ## License
 This project is in the worldwide public domain.
