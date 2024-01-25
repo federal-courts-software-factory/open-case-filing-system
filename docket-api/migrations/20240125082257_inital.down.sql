@@ -1,0 +1,25 @@
+-- Add migration script here
+DROP TABLE IF EXISTS notes;
+DROP TABLE IF EXISTS addresses cascade;
+DROP TABLE IF EXISTS roles cascade;
+DROP TABLE IF EXISTS users cascade;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS courtrooms cascade;
+DROP TABLE IF EXISTS court_cases cascade;
+DROP TABLE IF EXISTS judges cascade;
+DROP TABLE IF EXISTS law_firms cascade;
+DROP TABLE IF EXISTS lawyers cascade;
+DROP TABLE IF EXISTS parties cascade;
+DROP TABLE IF EXISTS case_parties;
+DROP TABLE IF EXISTS documents;
+DROP TABLE IF EXISTS hearings cascade;
+DROP TABLE IF EXISTS hearing_details;
+DROP TABLE IF EXISTS court_events;
+DROP TABLE IF EXISTS case_notes;
+DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS notifications;
+DROP TABLE IF EXISTS financial_transactions;
+DROP TABLE IF EXISTS courtcase_judges;
+DROP TABLE IF EXISTS courtcase_lawyers;
+DROP TABLE IF EXISTS courtcase_parties;
+DROP TABLE IF EXISTS audit_log;
