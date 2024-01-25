@@ -1,8 +1,8 @@
-// use Option<chrono::DateTime<chrono::Utc>>Time;
+// use Option<chrono::DateTime<chrono::Utc>>,Time;
 use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
 use uuid::Uuid;
-use chrono::NaiveDate;
+use chrono::{NaiveDate};
 #[derive(Debug, FromRow, Deserialize, Serialize)]
 #[allow(non_snake_case)]
 pub struct NoteModel {
@@ -14,8 +14,9 @@ pub struct NoteModel {
     #[serde(rename = "createdAt")]
     pub created_at: Option<chrono::DateTime<chrono::Utc>>,
     #[serde(rename = "updatedAt")]
-    pub updated_at: Option<chrono::DateTime<chrono::Utc>>
+    pub updated_at: Option<chrono::DateTime<chrono::Utc>>,
 }
+
 
 
 #[derive(Debug, sqlx::FromRow, Serialize, Deserialize)]
@@ -44,12 +45,12 @@ pub struct CaseModel {
     pub id: Uuid,
     pub case_number: Option<String>,
     pub title: Option<String>,
-    pub filing_date: chrono::NaiveDate,
-    pub case_status: String, // Consider using an Enum for status
+    pub filing_date: Option<NaiveDate>,
+    pub case_status: Option<String>, // Consider using an Enum for status
     pub courtroom_id: Option<Uuid>,
-    pub scheduled_date: Option<chrono::NaiveDateTime>,
+    pub scheduled_date: Option<NaiveDate>,
     pub last_modified_by: Option<Uuid>,
-    pub last_modified_date: Option<chrono::NaiveDateTime>,
+    pub last_modified_date: Option<chrono::DateTime<chrono::Utc>>,
 
 }
 
@@ -100,7 +101,7 @@ pub struct Document {
     pub description: String,
     pub file_path: String,
     pub submitted_by: Uuid,
-    pub submission_date: Option<chrono::DateTime<chrono::Utc>>
+    pub submission_date: Option<chrono::DateTime<chrono::Utc>>,
 }
 
 #[derive(Debug, sqlx::FromRow, Serialize, Deserialize)]
@@ -135,7 +136,7 @@ pub struct CaseNote {
     pub case_id: Uuid,
     pub note: String,
     pub created_by: Uuid,
-    pub created_at: Option<chrono::DateTime<chrono::Utc>>
+    pub created_at: Option<chrono::DateTime<chrono::Utc>>,
 }
 
 #[derive(Debug, sqlx::FromRow, Serialize, Deserialize)]
