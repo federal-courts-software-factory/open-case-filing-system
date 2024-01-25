@@ -2,7 +2,7 @@
 use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
 use uuid::Uuid;
-
+use chrono::NaiveDate;
 #[derive(Debug, FromRow, Deserialize, Serialize)]
 #[allow(non_snake_case)]
 pub struct NoteModel {
@@ -44,12 +44,12 @@ pub struct CaseModel {
     pub id: Uuid,
     pub case_number: Option<String>,
     pub title: Option<String>,
-    pub filing_date: Option<chrono::DateTime<chrono::Utc>>,
-    pub status: String, // Consider using an Enum for status
+    pub filing_date: chrono::NaiveDate,
+    pub case_status: String, // Consider using an Enum for status
     pub courtroom_id: Option<Uuid>,
-    pub scheduled_date: Option<chrono::DateTime<chrono::Utc>>,
+    pub scheduled_date: Option<chrono::NaiveDateTime>,
     pub last_modified_by: Option<Uuid>,
-    pub last_modified_date: Option<chrono::DateTime<chrono::Utc>>,
+    pub last_modified_date: Option<chrono::NaiveDateTime>,
 
 }
 

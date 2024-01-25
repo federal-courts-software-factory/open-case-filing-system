@@ -34,10 +34,10 @@ pub struct UpdateNoteSchema {
 pub struct CreateCaseSchema {
     pub case_number: String,
     pub title: String,
-    pub filing_date: Option<NaiveDate>,
+    pub filing_date: NaiveDate,
     pub case_status: String, // Consider using an Enum for status
     pub courtroom_id: Option<String>,
-    pub scheduled_date: Option<NaiveDate>
+    pub scheduled_date: Option<chrono::NaiveDateTime>
 }
 
 // UpdateCaseSchema represents the data that can be updated for a case.
@@ -46,7 +46,7 @@ pub struct UpdateCaseSchema {
     pub case_number: String,
     pub title: String,
     pub filing_date: Option<String>,
-    pub status: String, // Consider using an Enum for status
+    pub case_status: String, // Consider using an Enum for status
     pub courtroom_id: Option<String>,
     pub scheduled_date: Option<String>
 }
