@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "4bf57cb0-7ae3-477d-b479-71b6f531c98b",
+		"name": "Court Cases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17912400"
+	},
+	"item": [
+		{
+			"name": "Create Court Case",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n              \"case_id\": \"2024-01-25-0bdd23eb2380d8493f052a41d521695b\",\r\n              \"title\": \"UNITED STATES V. SMITH\",\r\n              \"filing_date\": \"2024-01-25\",\r\n              \"status\": \"Open\",\r\n              \"courtroom_id\": \"19f9d587-3233-4b2b-b98d-5bddc37972df\",\r\n              \"scheduled_date\": \"2035-01-25\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/court_case/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"court_case",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  Court Case by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"court_cases",
+						"19f9d587-3233-4b2b-b98d-5bddc37972df"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Checker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/healthchecker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"healthchecker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Court Case",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n              \"case_id\": \"2024-01-25-0bdd23eb2380d8493f052a41d521695b\",\r\n              \"title\": \"UNITED STATES V. John Doe\",\r\n              \"filing_date\": \"2024-01-25\",\r\n              \"status\": \"Closed\",\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"court_cases",
+						"19f9d587-3233-4b2b-b98d-5bddc37972df"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete  Note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"court_cases",
+						"19f9d587-3233-4b2b-b98d-5bddc37972df"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All  Court Cases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/court_cases?page=1&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"court_cases"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
