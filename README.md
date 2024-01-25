@@ -8,6 +8,27 @@ Open Case Filing System (OCFS) is a modern platform designed to facilitate and s
 4. Search for "dev containers" and select "Rebuild Container."
 5. Load the code in a container (devcontainer)
 
+## Database Setup
+
+# Explanation:
+# This section outlines how to set up the database for the project.
+
+`sqlx database create` 
+`cd docket-api && cargo run`
+
+# Explanation:
+# Run the `sqlx database create` command to create the database. Then, navigate to the 'docket-api' directory and execute `cargo run` to run the application.
+
+### Database Troubleshooting
+
+# Explanation:
+# Troubleshooting steps for database-related issues.
+
+** Warning this will completely destroy your database. **
+>> `sqlx database drop -f; sqlx database create; sqlx migrate run`
+
+
+
 ## License
 This project is in the worldwide public domain.
 This project constitutes a work of the United States Government and is not subject to domestic copyright protection under 17 USC § 105. Additionally, we waive copyright and related rights in the work worldwide through the CC0 1.0 Universal public domain dedication.
