@@ -112,6 +112,9 @@ web/target/
 web/target/build/
 web/target/debug/
 
+target/
+
+
 
 target/
 target/build/
