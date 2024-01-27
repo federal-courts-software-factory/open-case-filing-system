@@ -31,7 +31,7 @@ pub struct UpdateNoteSchema {
     pub published: Option<bool>,
 }
 
-pub struct CreateCaseSchema {
+pub struct CreateCourtCaseSchema {
     pub case_number: String,
     pub title: String,
     pub filing_date: Option<NaiveDate>,
@@ -42,11 +42,11 @@ pub struct CreateCaseSchema {
 
 // UpdateCaseSchema represents the data that can be updated for a case.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct UpdateCaseSchema {
+pub struct UpdateCourtCaseSchema {
     pub case_number: String,
     pub title: String,
     pub filing_date: Option<String>,
-    pub status: String, // Consider using an Enum for status
+    pub case_status: String, // Consider using an Enum for status
     pub courtroom_id: Option<String>,
     pub scheduled_date: Option<String>
 }

@@ -107,3 +107,4 @@ docket-api/target/
 docket-api/target/build/
 docket-api/target/debug/
 .cargo/
+.vscode/
