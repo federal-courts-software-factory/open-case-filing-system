@@ -3,9 +3,10 @@ use std::sync::Arc;
 use axum::{
     extract::{Path, Query, State},
     http::StatusCode,
-    response::IntoResponse,
+    response::{Html, IntoResponse},
     Json,
 };
+
 use serde_json::json;
 
 use crate::{
@@ -13,8 +14,12 @@ use crate::{
     schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema, CreateCourtCaseSchema, UpdateCourtCaseSchema},
     AppState,
 };
-use anyhow::Result; // Import Result from anyhow
 
+pub async fn homepage() -> impl IntoResponse {
+    println!("->> {:<12} - / '200 Ok'", "Homepage"); 
+
+    Html("<h1>Welcome to the Open Case Filing System!</h1>")
+}
 
 
 pub async fn health_checker_handler() -> impl IntoResponse {
