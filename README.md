@@ -38,7 +38,7 @@ This is not recommended, but in case we don't have access to devcontainers, you 
 To configure the database:
 
 1. Navigate to the API directory:
-- cd docket-api
+- `cd docket-api`
 
 2. Run the following commands:
 - Create the database:
