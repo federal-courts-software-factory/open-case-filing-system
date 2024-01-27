@@ -106,5 +106,12 @@ dist
 docket-api/target/
 docket-api/target/build/
 docket-api/target/debug/
+
+
+web/target/
+web/target/build/
+web/target/debug/
+
+
 .cargo/
 .vscode/
