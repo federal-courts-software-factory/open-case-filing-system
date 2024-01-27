@@ -3,21 +3,6 @@
 version = 3
 
 [[package]]
-name = "Open_Case_Filing_System_web"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "axum",
- "common",
- "dotenv",
- "httpc-test",
- "serde",
- "serde_json",
- "tokio",
- "tower-http",
-]
-
-[[package]]
 name = "addr2line"
 version = "0.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2819,6 +2804,21 @@ name = "wasm-bindgen-shared"
 version = "0.2.90"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4d91413b1c31d7539ba5ef2451af3f0b833a005eb27a631cec32bc0635a8602b"
+
+[[package]]
+name = "web"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "common",
+ "dotenv",
+ "httpc-test",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tower-http",
+]
 
 [[package]]
 name = "web-sys"
