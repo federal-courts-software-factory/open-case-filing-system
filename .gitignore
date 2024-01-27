@@ -113,5 +113,14 @@ web/target/build/
 web/target/debug/
 
 
+target/
+target/build/
+target/debug/
+
+
+common/target/
+common/target/build/
+common/target/debug/
+
 .cargo/
 .vscode/
