@@ -7,7 +7,7 @@ use axum::{
 
 use crate::{
     handler::{
-        homepage, create_note_handler, delete_note_handler, edit_note_handler, get_note_handler,
+        create_note_handler, delete_note_handler, edit_note_handler, get_note_handler,
         health_checker_handler, note_list_handler, case_list_handler
     },
     AppState,

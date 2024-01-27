@@ -2,9 +2,10 @@
 name = "docket-api"
 version = "0.1.0"
 edition = "2021"
+authors = ["Tyler Harpool <tylerharpool@gmail.com>"]
+description = "A docket-api for open case filing system"
 
-[build]
-target-dir = "/docket-api/target"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -18,11 +19,14 @@ tokio = { version = "1.27.0", features = ["full"] }
 tower-http = { version = "0.5.0", features = ["cors", "fs"] }
 uuid = { version = "1.3.0", features = ["serde", "v4"] }
 
+# Importing our own common lib
+common = {path = "../common"}
 
 # Utility Crates
 [dev-dependencies]
 anyhow = "1.0.48"
 httpc-test = "0.1.1"
+rand = "0.8.5"
 # for OSX this was required, you might need to comment these targets out.
 # [target.x86_64-apple-darwin]
 # rustflags = [
