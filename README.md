@@ -14,12 +14,16 @@ Open Case Filing System (OCFS) is a modern platform designed to facilitate and s
     1. `cd docket-api && cargo run`
     2. `sqlx database create` 
     3. `sqlx migrate run`
+    4. `cargo run` or `cargo watch -q -c -x run`
 
-
+# Run Tests
+## Best to run this in a sperate window next to our cargo run command. Server must be running!
+    0. `cargo watch -q -c -w tests/ -x "test -q quick_dev -- --nocapture"`
+    1. -q Quiet
+    2. -c Clear
+    3. -w Watch
 
 ## Database Troubleshooting
-
-
 ### Troubleshooting steps for database-related issues.
 #### Remove everything and migrate the schema.
 ** Warning this will completely destroy your database. **
