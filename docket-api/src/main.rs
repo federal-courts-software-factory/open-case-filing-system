@@ -16,7 +16,7 @@ use tower_http::cors::CorsLayer;
 
 use sqlx::{postgres::PgPoolOptions, Pool, Postgres};
 use sqlx::migrate::Migrator;
-
+use common;
 // Define the application state struct to hold the database pool.
 pub struct AppState {
     db: Pool<Postgres>,
@@ -29,6 +29,9 @@ static MIGRATOR: Migrator = sqlx::migrate!(); // defaults to "./migrations"
 async fn main() {
     // Load environment variables from a .env file.
     dotenv().ok();
+
+    let num = 10;
+    println!("Hello, world! {num} plus one is {}!", common::add_one(num));  
 
     // Retrieve the database URL from the environment variables.
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
