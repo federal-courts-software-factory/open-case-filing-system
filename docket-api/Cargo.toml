@@ -24,6 +24,7 @@ common = {path = "../common"}
 [dev-dependencies]
 anyhow = "1.0.48"
 httpc-test = "0.1.1"
+rand = "0.8.5"
 # for OSX this was required, you might need to comment these targets out.
 # [target.x86_64-apple-darwin]
 # rustflags = [
