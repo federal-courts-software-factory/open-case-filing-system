@@ -11,7 +11,7 @@ use serde_json::json;
 
 use crate::{
     model::{NoteModel, CaseModel},
-    schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema, CreateCourtCaseSchema, UpdateCourtCaseSchema},
+    schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema},
     AppState,
 };
 

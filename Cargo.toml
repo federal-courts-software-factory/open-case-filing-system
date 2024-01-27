@@ -1,0 +1,7 @@
+[workspace]
+members =  [
+    "docket-api",
+    "web",
+    "common"
+]
+resolver = "2"
