@@ -22,19 +22,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - run: rustup toolchain install stable --profile minimal --target wasm32-unknown-unknown --no-self-update
-
-      - uses: ./
-        with:
-          workspaces: |
-            docket-api
-            web
-
-      - run: cargo check
-        working-directory: web
-
-      - run: cargo check
-        working-directory: docket-api
+      - name: Add Cargo Cache
+        uses: Swatinem/rust-cache@v2
 
 
       - name: Log in to the Container registry
