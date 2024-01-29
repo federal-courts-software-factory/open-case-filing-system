@@ -13,7 +13,7 @@ resources:
 - namespace.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/v2.7.2/manifests/ha/install.yaml
 - argocd-destinationrule.yaml
-
+- extensions.yaml
 
 components:
 # extensions controller component
