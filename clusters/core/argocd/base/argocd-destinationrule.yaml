@@ -1,0 +1,13 @@
+# When we enable istio, we will use a destination rule to forward traffic from the gateway to our argocd instance.
+# We can just use port forwarding until istio is installed.
+
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: argocd-server-dr
+#   namespace: argocd
+# spec:
+#   host: argocd-server.argocd.svc.cluster.local
+#   trafficPolicy:
+#     tls:
+#       mode: DISABLE

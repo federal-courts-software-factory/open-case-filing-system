@@ -1,0 +1,27 @@
+# ArgoCD Extensions go here --->
+# We can enable extensions and add argo rollout ui enhancements, but we aren't there just yet ;( 
+  
+# apiVersion: argoproj.io/v1alpha1
+# kind: ArgoCDExtension
+# metadata:
+#   name: rollout-extension
+#   namespace: argocd
+#   finalizers:
+#     - extensions-finalizer.argocd.argoproj.io
+# spec:
+#   sources:
+#   - web:
+#       url: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.1.0/extension.tar
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ArgoCDExtension
+# metadata:
+#   name: argocd-appset-ext
+#   namespace: argocd
+#   labels:
+#     tab: "ApplicationSet"
+#     icon: "fa-files"
+# spec:
+#   sources:
+#     - web:
+#         url: https://raw.githubusercontent.com/speedfl/argocd-apps-of-applicationset/master/ui/dist/extension.tar
