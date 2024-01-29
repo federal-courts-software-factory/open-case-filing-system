@@ -77,6 +77,8 @@ If you encounter database issues:
   ```
   sqlx database drop -f; sqlx database create; sqlx migrate run
   ```
+2. If our pipelines are failing because our database isn't connected. We need to run this first. 
+- `cargo sqlx prepare --workspace`
 
 ## Architecture
 

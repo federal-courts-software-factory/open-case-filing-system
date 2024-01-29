@@ -1,0 +1,71 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT * FROM court_cases ORDER by id LIMIT $1 OFFSET $2",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "case_number",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "title",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "filing_date",
+        "type_info": "Date"
+      },
+      {
+        "ordinal": 4,
+        "name": "case_status",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 5,
+        "name": "courtroom_id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 6,
+        "name": "scheduled_date",
+        "type_info": "Date"
+      },
+      {
+        "ordinal": 7,
+        "name": "last_modified_by",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 8,
+        "name": "last_modified_date",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "57e49d875ec872f6cbe4b26db849ae4897982f6556a61a68b5aa54d6a450c993"
+}
