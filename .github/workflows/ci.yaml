@@ -1,4 +1,4 @@
-name: Build & publish Open Case Filing System Images
+name: Build & publish Open Case Filing System
 on:
   release:
     types: [published]
@@ -30,7 +30,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_PACKAGE_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN  }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
