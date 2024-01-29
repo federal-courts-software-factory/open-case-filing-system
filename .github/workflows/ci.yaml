@@ -15,6 +15,8 @@ jobs:
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
           - dockerfile: ./docket-api/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+          - dockerfile: ./common/Dockerfile
+            image: ghcr.io/federal-courts-software-factory/open-case-filing-system/common
     permissions:
       contents: read
       packages: write
