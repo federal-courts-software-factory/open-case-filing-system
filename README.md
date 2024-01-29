@@ -30,8 +30,7 @@ To set up OCFS locally:
      docker-compose up -f .devcontainer/docker-compose.yml
      ```
 
-## Local setup
-This is not recommended, but in case we don't have access to devcontainers, you can run still run locally. You will need to copy the .env file from our .devcontainers folder into the root folder of the service. Example) cp .devcontainers/.env docket-api/.env. Skipping the step will result in a `set `DATABASE_URL` to use query macros online` error. In the future, we will take advantage of the sql offline and this step will no longer be needed.
+
 
 ## Database Setup
 
