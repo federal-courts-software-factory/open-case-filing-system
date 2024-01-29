@@ -100,6 +100,7 @@ OCFS employs a cutting-edge tech stack, aiming for high developer productivity a
 ### Argocd
 - **Automated Deployment**: Argocd is used to monitor our Git repository. It tracks changes and automatically updates the cluster. 
 - **Configuration Management**: We manage our resources using **kustomize** in the `clusters/` folder, preferring it over Helm.
+    * argocd app create docket-api --repo hhttps://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/docket-api/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace dev
 
 ## Utilizing Cargo Workspaces
 - **Efficient Package Management**: We use [Cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) to manage packages efficiently, offering benefits like unified dependencies and reduced overhead in space and time.
