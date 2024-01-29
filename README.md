@@ -83,48 +83,34 @@ If you encounter database issues:
 OCFS employs a cutting-edge tech stack, aiming for high developer productivity and customer satisfaction.
 
 
-### Developing against Kubernetes
-#### Minikube (Local testing and deployment)
->> Our devcontainers will start a minkube **kubernetes distribution** instance and will be ready for you to develop, test and deploy to kubernetes. 
-Our current application and deployment code live inside the same repo. This will change and must change, but it's important to move fast, so our application and deployment will not have the seperation that is considered best practice. 
+## Developing with Kubernetes
 
-* If you want minikube to provide a load balancer for use by Istio: `minikube tunnel`.
-* The best practice and standards on how to treat your local laptop like a production kubernetes instance will be discussed and documented in the future. 
-* For now, our focus is primarily on can the code be deployed to kubernetes. In the future, we will expand further into ci/cd pipeline and architecture (istio, argo-rollouts) requirements.
-* In the future, we will have unique and independent clusters, but now isolation happens within different namespaces.
+### Minikube for Local Testing and Deployment
+- **Devcontainer and Minikube Integration**: Our development containers automatically start a Minikube Kubernetes instance, streamlining development, testing, and deployment directly to Kubernetes.
+- **Current Repository Structure**: Currently, both application and deployment code coexist in the same repository. This setup is temporary and aimed at accelerating development. Eventually, we'll adopt the best practice of separating these concerns.
+- **Load Balancer with Minikube**: For load balancing using Istio, use the command: `minikube tunnel`.
+- **Future Plans**: We plan to document best practices for mirroring production Kubernetes environments on local machines. Additionally, future enhancements will include more sophisticated CI/CD pipelines and architectural components like Istio and Argo Rollouts.
+- **Current Isolation Approach**: Presently, we achieve environment isolation using different namespaces. However, we plan to transition to unique and independent clusters in the future.
 
->> Deploying to development
-    * We use the dev namespace and a namePrefix to ensure an isolated environment. All development work will be deployed to the dev namespace for testing.
->> Deploying to staging
-    * After testing, we will promote our dev images to staging. We will run performance tests and validations. All resources should be in the staging namespace.
->> Deploying to production
-    * Promotion to production occurs after a minimum of 2 weeks of staging or a significant amount of testing has occured. All resources are deployed into the prod namespace.  
+#### Deployment Strategies
+- **Development Environment**: We deploy to a 'dev' namespace with a unique namePrefix to ensure isolation during testing.
+- **Staging Environment**: After initial testing, we promote development images to a 'staging' environment for further performance testing and validations.
+- **Production Environment**: Once thoroughly tested (minimum 2 weeks in staging), we move resources to the 'prod' namespace for production deployment.
 
-#### Argocd
->> Argocd allows us to monitor our git repo and track changes and automatically pull these changes into the cluster automatically. We define these resources in our `clusters/` folder using **kustomize**, We try and avoid helm at all costs. 
+### Argocd
+- **Automated Deployment**: Argocd is used to monitor our Git repository. It tracks changes and automatically updates the cluster. 
+- **Configuration Management**: We manage our resources using **kustomize** in the `clusters/` folder, preferring it over Helm.
 
+## Utilizing Cargo Workspaces
+- **Efficient Package Management**: We use [Cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) to manage packages efficiently, offering benefits like unified dependencies and reduced overhead in space and time.
 
-### Cargo Workspaces
+## SurealDB
+- **Database Flexibility**: [SurealDB](https://surealdb.com) is our choice for database management, given its flexibility in handling SQL and graph queries, which suits the complex needs of the legal system.
 
-- Utilizes [Cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) for efficient package management.
-- Benefits include unified dependencies and reduced space and time overhead.
+## Web Interface with htmx
+- **Enhanced UI Reactivity**: We plan to use htmx for our web interface. It enhances HTML to increase UI reactivity without the need for JavaScript, leading to faster performance and simplified development.
 
-### SurealDB
-
-- We use [SurealDB](https://surealdb.com) for its flexibility in SQL and graph queries, accommodating the complex needs of the legal system.
-
-### htmx
-
-- For the web interface, we plan to use htmx, enhancing HTML for UI reactivity without JavaScript, ensuring fast performance and simplicity.
-
-# Open Case Filing System License
-Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
-
-This work is licensed under a
-[Creative Commons Attribution 4.0 International License][cc-by].
-
-[![CC BY 4.0][cc-by-image]][cc-by]
-
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
-[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
-[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
+## Open Case Filing System License
+- **License Type**: This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+    - ![CC BY 4.0 License Image](https://i.creativecommons.org/l/by/4.0/88x31.png)
+    - ![CC BY 4.0 Shield](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
