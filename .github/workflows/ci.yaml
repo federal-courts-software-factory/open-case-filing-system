@@ -1,7 +1,5 @@
 name: Build & publish Open Case Filing System
-on:
-  release:
-    types: [published]
+on: push
 
 env:
   REGISTRY: ghcr.io
@@ -14,9 +12,9 @@ jobs:
       matrix:
         include:
           - dockerfile: ./web/Dockerfile
-            image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
+            image: ${{ github.repository }}/web
           - dockerfile: ./docket-api/Dockerfile
-            image: federal-courts-software-factory/open-case-filing-system/docket-api
+            image: ${{ github.repository }}/docket-api
     permissions:
       contents: read
       packages: write
@@ -34,11 +32,11 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-acftion@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ matrix.image }}
+          images: ${{ env.REGISTRY }}/${{ matrix.image }}
 
-      - name: Build and push Docker image Drill4Net.Agent.Service
+      - name: Build and push Docker image Open Case Filing System
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
