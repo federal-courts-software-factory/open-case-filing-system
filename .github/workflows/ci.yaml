@@ -1,7 +1,5 @@
 name: Build & publish Open Case Filing System
-on:
-  release:
-    types: [published]
+on: push
 
 env:
   REGISTRY: ghcr.io
