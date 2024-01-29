@@ -39,3 +39,7 @@ rand = "0.8.5"
 #   "-C", "link-arg=-undefined",
 #   "-C", "link-arg=dynamic_lookup",
 # ]
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.

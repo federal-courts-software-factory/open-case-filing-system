@@ -23,3 +23,7 @@ common = {path = "../common"}
 [dev-dependencies]
 anyhow = "1.0.48"
 httpc-test = "0.1.1"
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.
