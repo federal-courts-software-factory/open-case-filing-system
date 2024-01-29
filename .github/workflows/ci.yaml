@@ -22,6 +22,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - run: rustup toolchain install stable --profile minimal
+      - name: Add Cargo Cache
+        uses: Swatinem/rust-cache@v2
+
 
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -36,7 +40,7 @@ jobs:
         with:
           images: ${{ matrix.image }}
 
-      - name: Build and push Docker image Drill4Net.Agent.Service
+      - name: Build and push Docker image Open Case Filing System
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
