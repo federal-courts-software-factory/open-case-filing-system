@@ -30,8 +30,7 @@ To set up OCFS locally:
      docker-compose up -f .devcontainer/docker-compose.yml
      ```
 
-## Local setup
-This is not recommended, but in case we don't have access to devcontainers, you can run still run locally. You will need to copy the .env file from our .devcontainers folder into the root folder of the service. Example) cp .devcontainers/.env docket-api/.env. Skipping the step will result in a `set `DATABASE_URL` to use query macros online` error. In the future, we will take advantage of the sql offline and this step will no longer be needed.
+
 
 ## Database Setup
 
@@ -82,6 +81,28 @@ If you encounter database issues:
 ## Architecture
 
 OCFS employs a cutting-edge tech stack, aiming for high developer productivity and customer satisfaction.
+
+
+### Developing against Kubernetes
+#### Minikube (Local testing and deployment)
+>> Our devcontainers will start a minkube **kubernetes distribution** instance and will be ready for you to develop, test and deploy to kubernetes. 
+Our current application and deployment code live inside the same repo. This will change and must change, but it's important to move fast, so our application and deployment will not have the seperation that is considered best practice. 
+
+* If you want minikube to provide a load balancer for use by Istio: `minikube tunnel`.
+* The best practice and standards on how to treat your local laptop like a production kubernetes instance will be discussed and documented in the future. 
+* For now, our focus is primarily on can the code be deployed to kubernetes. In the future, we will expand further into ci/cd pipeline and architecture (istio, argo-rollouts) requirements.
+* In the future, we will have unique and independent clusters, but now isolation happens within different namespaces.
+
+>> Deploying to development
+    * We use the dev namespace and a namePrefix to ensure an isolated environment. All development work will be deployed to the dev namespace for testing.
+>> Deploying to staging
+    * After testing, we will promote our dev images to staging. We will run performance tests and validations. All resources should be in the staging namespace.
+>> Deploying to production
+    * Promotion to production occurs after a minimum of 2 weeks of staging or a significant amount of testing has occured. All resources are deployed into the prod namespace.  
+
+#### Argocd
+>> Argocd allows us to monitor our git repo and track changes and automatically pull these changes into the cluster automatically. We define these resources in our `clusters/` folder using **kustomize**, We try and avoid helm at all costs. 
+
 
 ### Cargo Workspaces
 

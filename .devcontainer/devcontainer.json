@@ -12,7 +12,14 @@
 		"ghcr.io/rjfmachado/devcontainer-features/cloud-native:1": {},
 		"ghcr.io/rio/features/k9s:1": {},
 		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {}
-	}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vadimcn.vscode-lldb"
+			]
+		}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -21,7 +28,7 @@
 	// "forwardPorts": [5432],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "rustc --version",
+    "postCreateCommand": "rustc --version && minikube start --driver=docker"
 
 	// Configure tool-specific properties.
 	// "customizations": {},

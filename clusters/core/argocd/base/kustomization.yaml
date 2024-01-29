@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argocd
+
+# Keep newTag (images) and the version number of ArgoCD (resources) in sync. This will keep ArgoCD Repo Server
+# sidecar container images aligned to ArgoCD.
+# https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/images/
+images:
+  - name: quay.io/argoproj/argocd
+    newTag: v2.7.2
+
+resources:
+- namespace.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/v2.7.2/manifests/ha/install.yaml
+- argocd-destinationrule.yaml
+
+
+components:
+# extensions controller component
+- https://github.com/argoproj-labs/argocd-extensions/manifests
