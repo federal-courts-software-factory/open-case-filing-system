@@ -1,4 +1,4 @@
-name: Build & publish drill4net images
+name: Build & publish Open Case Filing System Images
 on:
   release:
     types: [published]
