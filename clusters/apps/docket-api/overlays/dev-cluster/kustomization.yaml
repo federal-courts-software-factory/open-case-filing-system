@@ -4,5 +4,5 @@ namespace: dev
 resources:
   - ../../base
   - namespace.yaml
-namePrefix: dev-
+
 
