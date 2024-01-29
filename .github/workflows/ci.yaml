@@ -22,6 +22,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      - run: rustup toolchain install stable --profile minimal
       - name: Add Cargo Cache
         uses: Swatinem/rust-cache@v2
 
