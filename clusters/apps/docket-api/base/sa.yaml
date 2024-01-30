@@ -5,4 +5,4 @@ metadata:
     app.kubernetes.io/name: docket-api
     app.kubernetes.io/part-of: open-case-filing-system
     app.kubernetes.io/component: api
-  name: sa
+  name: docket-api-sa
