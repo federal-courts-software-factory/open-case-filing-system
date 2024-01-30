@@ -27,7 +27,6 @@
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [5432],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "rustc --version && minikube start --driver=docker && kubectl config set-context minikube && kubectl config set-context --current --namespace=argocd && argocd login --core && kubectl apply -k clusters/core/argocd/overlays/dev-cluster"
 

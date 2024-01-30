@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+  namespace: default
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args: ["--dockerfile=/Dockerfile", 
+    "--context=dir://web",
+    "--destination=federal-courts-software-factory/open-case-filing-system/web"]
+    volumeMounts:
+      - name: web-dockerfile 
+        mountPath: /Dockerfile
+  restartPolicy: Never
+  volumes:
+    - name: web-dockerfile
+      configMap:
+        name: dockerfile-config
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+  namespace: default
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args: [
+    "--dockerfile=/Dockerfile", 
+    "--context=dir://docket-api", 
+    "--destination=federal-courts-software-factory/open-case-filing-system/main"
+    ]
+    volumeMounts:
+      - name: docket-dockerfile 
+        mountPath: /Dockerfile
+  restartPolicy: Never
+  volumes:
+    - name: docket-dockerfile
+      configMap:
+        name: docket-dockerfile-config

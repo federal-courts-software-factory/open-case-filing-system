@@ -14,7 +14,7 @@ Follow these steps to set up OCFS using a development container in Visual Studio
 2. **Setup**:
    - Open Visual Studio Code.
    - Use the hotkey `Ctrl + SHIFT + P`.
-   - Search for "dev containers" and select "Rebuild Container."
+   - Search for "dev containers" and select "Dev Containers: Rebuild and Reopen in Container."
    - The code will load in a development container, providing an isolated environment.
 
 ### Local Setup (Not Recommended)
@@ -107,12 +107,25 @@ OCFS employs a cutting-edge tech stack, aiming for high developer productivity a
     argocd app create docket-api --repo https://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/docket-api/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace dev --self-heal --sync-policy automated --sync-retry-limit 5 && 
      argocd app create web --repo https://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/web/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace dev --self-heal --sync-policy automated --sync-retry-limit 5 
     ```
-    * kubectl port-forward svc/argocd-server -n argocd 8080:443
-    * kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-    * Manually apply applicationSets:
-    * ```
-    argocd appset create clusters/environment/appsets/dev-docket-api.yaml && argocd appset create clusters/environment/appsets/dev-web.yaml --upsert
+    * Expose the Argocd service so you can reach the web ui:
       ```
+      kubectl port-forward svc/argocd-server -n argocd 8080:443
+      ```
+    - In your browser go to: `http://localhost:80880`
+
+    * Find the randomly created admin password:
+      ```
+      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+      ```
+    - Admin login: use the username, `admin` and use password from kubectl get secret command directly above.
+## Argocd ApplicationSets
+### How to Manually apply applicationSets:
+This step should not be needed, but in case somebody didn't run as expected you can always cd into the open case filing system directory on your computer and run the following:  **Notice: --upsert flag** is required if you already applied these applicationSets before.
+
+  * 
+    ```
+    argocd appset create clusters/environment/appsets/dev-docket-api.yaml --upsert && argocd appset create clusters/environment/appsets/dev-web.yaml --upsert
+    ```
 
 ## Utilizing Cargo Workspaces
 - **Efficient Package Management**: We use [Cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) to manage packages efficiently, offering benefits like unified dependencies and reduced overhead in space and time.

@@ -8,3 +8,5 @@ resources:
 
 - appsets/dev-docket-api.yaml
 - appsets/dev-web.yaml
+
+- kaniko/kaniko.yaml
