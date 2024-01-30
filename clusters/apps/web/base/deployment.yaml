@@ -17,7 +17,7 @@ spec:
       annotations:
         team: "fcsf"
       labels:
-        app: web
+        app: web-ui
     spec:
       containers:
         - name: web-ui
