@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/part-of: open-case-filing-system
     app.kubernetes.io/component: api
   name: docket-api
-  namespace: dev
+  namespace: staging
 spec:
   selector:
     matchLabels:
