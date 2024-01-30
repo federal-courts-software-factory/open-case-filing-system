@@ -111,7 +111,7 @@ OCFS employs a cutting-edge tech stack, aiming for high developer productivity a
     * kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     * Manually apply applicationSets:
     * ```
-    argocd appset create clusters/environment/appsets/dev-docket-api.yaml && argocd appset create clusters/environment/appsets/dev-web.yaml
+    argocd appset create clusters/environment/appsets/dev-docket-api.yaml && argocd appset create clusters/environment/appsets/dev-web.yaml --upsert
       ```
 
 ## Utilizing Cargo Workspaces

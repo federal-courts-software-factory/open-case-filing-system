@@ -6,11 +6,12 @@ metadata:
     app.kubernetes.io/part-of: open-case-filing-system
     app.kubernetes.io/component: api
   name: docket-api-service
+  namespace: dev
 spec:
   ports:
   - name: http
     protocol: TCP
-    port: 80
+    port: 8080
     targetPort: 8080
   # - name: https
   #   protocol: TCP
