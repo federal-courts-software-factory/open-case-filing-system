@@ -4,4 +4,3 @@ namespace: staging
 resources:
   - ../../base
 
-namePrefix: stg-
