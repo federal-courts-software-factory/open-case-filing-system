@@ -5,3 +5,5 @@ resources:
 - namespaces/dev.yaml
 - namespaces/prod.yaml
 - namespaces/staging.yaml
+
+- appsets/ocfs.yaml
