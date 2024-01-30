@@ -102,7 +102,8 @@ OCFS employs a cutting-edge tech stack, aiming for high developer productivity a
 ### Argocd
 - **Automated Deployment**: Argocd is used to monitor our Git repository. It tracks changes and automatically updates the cluster. 
 - **Configuration Management**: We manage our resources using **kustomize** in the `clusters/` folder, preferring it over Helm.
-    * argocd app create docket-api --repo https://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/docket-api/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace argocd --self-heal --sync-policy automated --sync-retry-limit 5 
+    * argocd app create docket-api --repo https://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/docket-api/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace dev --self-heal --sync-policy automated --sync-retry-limit 5 
+    * argocd app create web --repo https://github.com/federal-courts-software-factory/open-case-filing-system.git --path clusters/apps/web/overlays/dev-cluster --dest-server https://kubernetes.default.svc --dest-namespace dev --self-heal --sync-policy automated --sync-retry-limit 5 
     * kubectl port-forward svc/argocd-server -n argocd 8080:443
     * kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
