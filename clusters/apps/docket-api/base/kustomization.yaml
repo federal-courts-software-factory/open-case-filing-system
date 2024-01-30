@@ -11,3 +11,4 @@ images:
 resources:
 - service.yaml
 - sa.yaml
+- deployment.yaml
