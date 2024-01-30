@@ -6,4 +6,5 @@ resources:
 - namespaces/prod.yaml
 - namespaces/staging.yaml
 
-- appsets/ocfs.yaml
+- appsets/dev-docket-api.yaml
+- appsets/dev-web.yaml
