@@ -18,4 +18,3 @@ spec:
     targetPort: 8080
   selector:
     app.kubernetes.io/name: web
- 
