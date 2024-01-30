@@ -1,11 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: -service
+  labels:
+    app.kubernetes.io/name: docket-api
+    app.kubernetes.io/part-of: open-case-filing-system
+    app.kubernetes.io/component: api
+  name: service
 spec:
-  type: ClusterIP
-  selector:
-    app: docket-api
   ports:
-  - port: 8080
-    name: http-port
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: docket-api
