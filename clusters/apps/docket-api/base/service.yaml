@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/name: docket-api
     app.kubernetes.io/part-of: open-case-filing-system
     app.kubernetes.io/component: api
-  name: service
+  name: docket-api-service
 spec:
   ports:
   - name: http
