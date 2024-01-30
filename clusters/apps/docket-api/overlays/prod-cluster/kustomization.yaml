@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: prod
 resources:
   - ../../base
-  - namespace.yaml
-namePrefix: prod-
+  - deployment.yaml

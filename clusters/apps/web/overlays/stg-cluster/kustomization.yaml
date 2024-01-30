@@ -3,4 +3,4 @@ kind: Kustomization
 namespace: staging
 resources:
   - ../../base
-  - namespace.yaml
+  - deployment.yaml

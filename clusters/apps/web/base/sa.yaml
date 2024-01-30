@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: open-case-filing-system
+    app.kubernetes.io/component: api
+  name: web-sa

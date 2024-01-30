@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: docket-api-dev
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      directories:
+      - path: clusters/apps/docket-api/overlays/dev-cluster
+      repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
+      revision: main
+  template:
+    metadata:
+      name: 'docket-api-{{path.basename}}' # sub folder name
+    spec:
+      source:
+        path: '{{path}}' # full path
+        repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
+        targetRevision: main
+      project: default
+      destination:
+        namespace: dev
+        server: https://kubernetes.default.svc

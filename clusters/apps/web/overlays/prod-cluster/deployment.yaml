@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: open-case-filing-system
+    app.kubernetes.io/component: api
+  name: web
+  namespace: prod 
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: web
+    spec:
+      serviceAccountName: web-sa
+      containers:
+        - name: web
+          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:main
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+

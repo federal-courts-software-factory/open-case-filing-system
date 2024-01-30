@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: docket-api
+    app.kubernetes.io/part-of: open-case-filing-system
+    app.kubernetes.io/component: api
+  name: docket-api
+  namespace: prod
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: docket-api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: docket-api
+    spec:
+      serviceAccountName: docket-api-sa
+      containers:
+        - name: docket-api
+          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api:main
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+
