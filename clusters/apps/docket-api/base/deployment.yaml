@@ -6,7 +6,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: deployment
+      app: docket-api-deployment
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,7 +17,7 @@ spec:
       annotations:
         team: "fcsf"
       labels:
-        app: docket-api
+        app: docket-api-deployment
     spec:
       containers:
         - name: docket-api
