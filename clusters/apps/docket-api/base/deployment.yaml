@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docket-api
+  name: -deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: docket-api
+      app: -deployment
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: docket-api
-          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api:main
           imagePullPolicy: IfNotPresent
           resources:
             requests:
