@@ -12,7 +12,7 @@ spec:
       revision: main
   template:
     metadata:
-      name: '{{path.basename}}' # sub folder name
+      name: 'docket-api-{{path.basename}}' # sub folder name
     spec:
       source:
         path: '{{path}}' # full path
