@@ -10,4 +10,4 @@ images:
 
 resources:
 - service.yaml
-# - deployment.yaml
+- deployment.yaml
