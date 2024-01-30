@@ -10,12 +10,14 @@ Follow these steps to set up OCFS using a development container in Visual Studio
 1. **Prerequisites**:
    - Ensure Docker is running on your local machine.
    - Install Visual Studio Code.
+   - `git clone git@github.com:federal-courts-software-factory/open-case-filing-system.git`
 
 2. **Setup**:
-   - Open Visual Studio Code.
+   - Open Visual Studio Code in the open-case-filing-system directory.
    - Use the hotkey `Ctrl + SHIFT + P`.
    - Search for "dev containers" and select "Rebuild Container."
    - The code will load in a development container, providing an isolated environment.
+   - to work with git inside the container, it might be necessary to run `git config --global --add safe.directory /workspaces/open-case-filing-system`
 
 ### Local Setup (Not Recommended)
 To set up OCFS locally:
