@@ -21,6 +21,8 @@ spec:
         - name: web
           image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:main
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
           resources:
             requests:
               cpu: 200m

@@ -21,6 +21,8 @@ spec:
         - name: docket-api
           image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api:main
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
           resources:
             requests:
               cpu: 200m
