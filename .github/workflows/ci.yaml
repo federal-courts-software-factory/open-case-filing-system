@@ -54,7 +54,7 @@ jobs:
           --no-default-features
           --locked
       - name: Migrate database
-        run: cd ${github.workspace{/docket-api && sqlx database create && sqlx migrate run
+        run: cd ${{github.workspace}}/docket-api && sqlx database create && sqlx migrate run
       - name: Generate code coverage
         run: cargo tarpaulin --verbose --workspace
       - uses: dtolnay/rust-toolchain@nightly
