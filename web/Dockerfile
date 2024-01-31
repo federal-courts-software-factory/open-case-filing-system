@@ -10,7 +10,7 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN cargo build --release
-
+EXPOSE 3000
 FROM gcr.io/distroless/cc-debian11
 COPY --from=builder /app/target/release/web /
 CMD ["./web"]

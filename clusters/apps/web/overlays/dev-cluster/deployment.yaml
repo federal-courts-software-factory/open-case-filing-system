@@ -2,32 +2,56 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/name: web
-    app.kubernetes.io/part-of: open-case-filing-system
-    app.kubernetes.io/component: api
-  name: web
-  namespace: dev 
+    app: web-test
+  name: web-test
+  namespace: dev
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: web
+      app: web-test
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: web
+        app: web-test
     spec:
-      serviceAccountName: web-sa
       containers:
-        - name: web
-          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-946daa7
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3000
-          resources:
-            requests:
-              cpu: 200m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 1Gi
+      - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-460766f
+        name: web-test
+        env:
+        - name: POSTGRES_DB
+          value: "postgres"
+
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app.kubernetes.io/name: web
+#     app.kubernetes.io/part-of: open-case-filing-system
+#     app.kubernetes.io/component: api
+#   name: web
+#   namespace: dev 
+# spec:
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/name: web
+#   template:
+#     metadata:
+#       labels:
+#         app.kubernetes.io/name: web
+#     spec:
+#       serviceAccountName: web-sa
+#       containers:
+#         - name: web
+#           image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-946daa7
+#           imagePullPolicy: IfNotPresent
+#           ports:
+#             - containerPort: 3000
+#           resources:
+#             requests:
+#               cpu: 200m
+#               memory: 256Mi
+#             limits:
+#               cpu: 500m
+#               memory: 1Gi
 
