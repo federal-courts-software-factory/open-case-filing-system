@@ -106,8 +106,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           
-      - name: Set foobar to cool
-        uses: mikefarah/yq@master
-        with:
-          cmd: yq -i 'spec.template.spec.containers[0].image = ${{ steps.meta.outputs.tags.sha }}' '${{ matrix.app }}'
-    
