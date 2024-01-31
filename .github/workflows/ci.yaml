@@ -41,6 +41,9 @@ jobs:
         uses: Swatinem/rust-cache@v2
         with:
           key: sqlx-${{ env.SQLX_VERSION }}
+          workspaces: "docket-api"
+          cache-directories: "web"
+          
       - name: Install tarpaulin
         run: cargo install cargo-tarpaulin
       - name: Install sqlx-cli
