@@ -19,7 +19,7 @@ spec:
       serviceAccountName: docket-api-sa
       containers:
         - name: docket-api
-          image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api:main
+          image: docker pull ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-946daa7
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
