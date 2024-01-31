@@ -73,4 +73,15 @@ jobs:
           value: ${{ steps.meta.outputs.tags.sha }}
           commitChange: true
 
-
+      - name: Update Image Version in the related HelmChart values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: ${{ matrix.app }}
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value:  ${{ steps.meta.outputs.tags.sha }}
+          repository: federal-courts-software-factory/open-case-filing-system
+          branch: deployment/${{ steps.image.outputs.version }}
+          targetBranch: argocd
+          createPR: true
+          message: 'Update Image Version to ${{ steps.image.outputs.version }}'
+          token: ${{ secrets.GITHUB_TOKEN }}
