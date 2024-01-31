@@ -28,9 +28,11 @@ jobs:
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
+            working-directory: web
             app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
           - dockerfile: ./docket-api/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+            working-directory: docket-api
             app: clusters/apps/docket-api/overlays/dev-cluster/deployment.yaml
     permissions:
       contents: read
@@ -69,7 +71,8 @@ jobs:
           components: clippy
       - uses: clechasseur/rs-clippy-check@v3
         with:
-          args: --all-features        
+          args: --all-features  
+          working-directory: ${{matrix.working-directory}}
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -102,16 +105,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Update Image Version in the related HelmChart values.yaml
-        uses: fjogeleit/yaml-update-action@main
+          
+      - name: Set foobar to cool
+        uses: mikefarah/yq@master
         with:
-          valueFile: ${{ matrix.app }}
-          propertyPath: 'spec.template.spec.containers[0].image'
-          value:  ${{ steps.meta.outputs.tags.sha }}
-          repository: federal-courts-software-factory/open-case-filing-system
-          branch: deployment/${{ steps.image.outputs.version }}
-          targetBranch: argocd
-          createPR: true
-          message: 'Update Image Version to ${{ steps.image.outputs.version }}'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          cmd: yq -i 'spec.template.spec.containers[0].image = ${{ steps.meta.outputs.tags.sha }}' '${{ matrix.app }}'
+    
