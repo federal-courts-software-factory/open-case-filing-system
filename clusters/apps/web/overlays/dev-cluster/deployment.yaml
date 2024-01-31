@@ -15,7 +15,7 @@ spec:
         app: web-test
     spec:
       containers:
-      - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-4e8c3ed
+      - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-024ece0
         name: web-test
         env:
         - name: POSTGRES_DB
