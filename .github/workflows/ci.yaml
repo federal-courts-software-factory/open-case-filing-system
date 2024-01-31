@@ -65,13 +65,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Update values.yaml
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: ${{ matrix.app }}
-          propertyPath: 'spec.template.spec.containers[0].image'
-          value: ${{ steps.meta.outputs.tags.sha }}
-          createPR: true
 
       - name: Update Image Version in the related HelmChart values.yaml
         uses: fjogeleit/yaml-update-action@main
