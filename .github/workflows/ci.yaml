@@ -54,7 +54,12 @@ jobs:
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: Generate code coverage
         run: cargo tarpaulin --verbose --workspace
-        
+      - uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: clippy
+      - uses: clechasseur/rs-clippy-check@v3
+        with:
+          args: --all-features        
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
