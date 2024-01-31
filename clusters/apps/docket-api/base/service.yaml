@@ -6,16 +6,18 @@ metadata:
     app.kubernetes.io/part-of: open-case-filing-system
     app.kubernetes.io/component: api
   name: docket-api-service
-  namespace: dev
 spec:
   ports:
-  - name: http
+  - name: 3000-3000
+    port: 3000
     protocol: TCP
-    port: 8080
-    targetPort: 8080
+    targetPort: 3000
   # - name: https
   #   protocol: TCP
   #   port: 443
-  #   targetPort: 8080
+  #   targetPort: 3000
   selector:
     app.kubernetes.io/name: docket-api
+  type: ClusterIP
+status:
+  loadBalancer: {}
