@@ -13,10 +13,10 @@ jobs:
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
-            app: web
+            app: custers/apps/web/overlays/dev-cluster/deployment.yaml
           - dockerfile: ./docket-api/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
-            app: docket-api
+            app: dcusters/apps/docket-api/overlays/dev-cluster/deployment.yaml
     permissions:
       contents: read
       packages: write
@@ -65,3 +65,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: ${{ matrix.app }}
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value: ${{ steps.meta.outputs.tags.sha }}
+          commitChange: false
+
+
