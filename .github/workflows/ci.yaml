@@ -4,9 +4,21 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  CARGO_TERM_COLOR: always
+  SQLX_VERSION: 0.6.2
+  SQLX_FEATURES: "rustls,postgres"
 jobs:
   build-and-push-image:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    
+    services:
+        postgres:
+          image: postgres:15
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: docket-api
+          ports:
+            - 5432:5432
     strategy:
       fail-fast: false
       matrix:
@@ -27,7 +39,22 @@ jobs:
       - run: rustup toolchain install stable --profile minimal
       - name: Add Cargo Cache
         uses: Swatinem/rust-cache@v2
-
+        with:
+          key: sqlx-${{ env.SQLX_VERSION }}
+      - name: Install tarpaulin
+        run: cargo install cargo-tarpaulin
+      - name: Install sqlx-cli
+        run:
+          cargo install sqlx-cli
+          --version=${{ env.SQLX_VERSION }}
+          --features ${{ env.SQLX_FEATURES }}
+          --no-default-features
+          --locked
+      - name: Migrate database
+        run: SKIP_DOCKER=true ./scripts/init_db.sh
+      - name: Generate code coverage
+        run: cargo tarpaulin --verbose --workspace
+        
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
@@ -51,11 +78,6 @@ jobs:
             type=sha   
 
             
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ${{ matrix.image }}
 
       - name: Build and push Docker image Open Case Filing System
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -65,13 +87,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Update values.yaml
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: ${{ matrix.app }}
-          propertyPath: 'spec.template.spec.containers[0].image'
-          value: ${{ steps.meta.outputs.tags.sha }}
-          createPR: true
 
       - name: Update Image Version in the related HelmChart values.yaml
         uses: fjogeleit/yaml-update-action@main
