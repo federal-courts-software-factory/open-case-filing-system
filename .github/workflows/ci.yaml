@@ -13,10 +13,10 @@ jobs:
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
-            app: custers/apps/web/overlays/dev-cluster/deployment.yaml
+            app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
           - dockerfile: ./docket-api/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
-            app: dcusters/apps/docket-api/overlays/dev-cluster/deployment.yaml
+            app: clusters/apps/docket-api/overlays/dev-cluster/deployment.yaml
     permissions:
       contents: read
       packages: write
