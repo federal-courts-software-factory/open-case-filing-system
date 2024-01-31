@@ -7,6 +7,9 @@ env:
   CARGO_TERM_COLOR: always
   SQLX_VERSION: 0.6.2
   SQLX_FEATURES: "rustls,postgres"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: docket-api  
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest    
@@ -54,7 +57,11 @@ jobs:
           --no-default-features
           --locked
       - name: Migrate database
-        run: cd ${{github.workspace}}/docket-api && sqlx database create && sqlx migrate run
+        run: |
+          cd ${{github.workspace}}/docket-api \
+          && export DATABASEURL=DATABASE_URL=postgres://${{env.DB_USER}}:${{env.DB_PASSWORD}}@${{env.DB_HOST}}:${{env.DB_PORT}}/${{env.DB_NAME}} \
+          && sqlx database create \
+          && sqlx migrate run
       - name: Generate code coverage
         run: cargo tarpaulin --verbose --workspace
       - uses: dtolnay/rust-toolchain@nightly
