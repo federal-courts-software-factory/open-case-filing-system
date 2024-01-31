@@ -71,7 +71,7 @@ jobs:
           valueFile: ${{ matrix.app }}
           propertyPath: 'spec.template.spec.containers[0].image'
           value: ${{ steps.meta.outputs.tags.sha }}
-          commitChange: true
+          createPR: true
 
       - name: Update Image Version in the related HelmChart values.yaml
         uses: fjogeleit/yaml-update-action@main
