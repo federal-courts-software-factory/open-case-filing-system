@@ -41,7 +41,7 @@ done
 fi
 DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 export DATABASE_URL
-cd ../docket-api
+cd  ${HOME}/docket-api
 sqlx database create
 sqlx migrate run
 
