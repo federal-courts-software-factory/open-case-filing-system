@@ -59,7 +59,7 @@ jobs:
       - name: Migrate database
         run: |
           cd ${{github.workspace}}/docket-api \
-          && export DATABASE_URL=postgres://${{env.DB_USER}}:${{env.DB_PASSWORD}}@${{env.DB_HOST}}:${{env.DB_PORT}}/${{env.DB_NAME}} \
+          && export DATABASE_URL=postgres://postgres:postgres@localhost:5432/docket-api \
           && sqlx database create \
           && sqlx migrate run
       - name: Generate code coverage
