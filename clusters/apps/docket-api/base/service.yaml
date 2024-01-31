@@ -1,23 +1,72 @@
+# This service represents the "stable" side of a microservice
+# The pods matched by its selector would be running the initial version of code
+# or older version of code that passed previous rollout testing.
 apiVersion: v1
 kind: Service
 metadata:
+  name: docket-api-stable
   labels:
-    app.kubernetes.io/name: docket-api
-    app.kubernetes.io/part-of: open-case-filing-system
-    app.kubernetes.io/component: api
-  name: docket-api-service
+    app: docket-api
+    role: stable
 spec:
-  ports:
-  - name: 3000-3000
-    port: 3000
-    protocol: TCP
-    targetPort: 3000
-  # - name: https
-  #   protocol: TCP
-  #   port: 443
-  #   targetPort: 3000
   selector:
-    app.kubernetes.io/name: docket-api
+    # Although the "stable" service and "canary" service may have matching 'selector' values, this is misleading
+    # Argo Rollout essentially takes ownership of these service objects and modifies them as needed.
+    # This includes inserting a new selector label, "rollouts-pod-template-hash". Its value is set to a random string.
+    # Pod labels and the service selector are updated to match to this new label.
+    app: docket-api
   type: ClusterIP
-status:
-  loadBalancer: {}
+  ports:
+  # There is not much notable about our port declaration.
+  # We do perform a port address translation of 80 (HTTP) to 8080.
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+    appProtocol: http
+---
+# This service represents the "canary" side of a microservice
+# The pods matched by its selector will be running new versions of code
+# that needs to be tested.
+apiVersion: v1
+kind: Service
+metadata:
+  name: docket-api-canary
+  labels:
+    app: docket-api
+    role: canary
+spec:
+  selector:
+    # Although the "stable" service and "canary" service may have matching 'selector' values, this is misleading
+    # Argo Rollout essentially takes ownership of these service objects and modifies them as needed.
+    # This includes inserting a new selector label, "rollouts-pod-template-hash". Its value is set to a random string.
+    # Pod labels and the service selector are updated to match to this new label.
+    app: docket-api
+  type: ClusterIP
+  ports:
+  # There is not much notable about our port declaration.
+  # We do perform a port address translation of 80 (HTTP) to 8080.
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+    appProtocol: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docket-api  
+  labels:
+    app: docket-api
+    role: stable
+spec:
+  selector:
+    app: docket-api
+    role: stable
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+    appProtocol: http
