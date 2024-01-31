@@ -1,16 +1,21 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
-WORKDIR app
-
-FROM chef AS planner
-COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
-
-FROM chef AS builder
-COPY --from=planner /app/recipe.json recipe.json
-RUN cargo chef cook --release --recipe-path recipe.json
-COPY . .
+# Start with a rust alpine image
+FROM rust:1-alpine3.19
+# This is important, see https://github.com/rust-lang/docker-rust/issues/85
+ENV RUSTFLAGS="-C target-feature=-crt-static"
+# if needed, add additional dependencies here
+RUN apk add --no-cache musl-dev
+# set the workdir and copy the source into it
+WORKDIR /app
+COPY ./ /app
+# do a release build
 RUN cargo build --release
-EXPOSE 3000
-FROM gcr.io/distroless/cc-debian11
-COPY --from=builder /app/target/release/web /
-CMD ["./web"]
+RUN strip target/release/web
+
+# use a plain alpine image, the alpine version needs to match the builder
+FROM alpine:3.19
+# if needed, install additional dependencies here
+RUN apk add --no-cache libgcc
+# copy the binary into the final image
+COPY --from=0 /app/target/release/web .
+# set the binary as entrypoint
+ENTRYPOINT ["/web"]
