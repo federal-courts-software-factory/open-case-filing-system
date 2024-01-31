@@ -71,6 +71,6 @@ jobs:
           valueFile: ${{ matrix.app }}
           propertyPath: 'spec.template.spec.containers[0].image'
           value: ${{ steps.meta.outputs.tags.sha }}
-          commitChange: false
+          commitChange: true
 
 
