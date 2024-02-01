@@ -14,6 +14,7 @@ Follow these steps to set up OCFS using a development container in Visual Studio
 
 2. **Setup**:
    - Open Visual Studio Code in the open-case-filing-system directory.
+   - Install the Dev Containers extension if you haven't already
    - Use the hotkey `Ctrl + SHIFT + P`.
    - Search for "dev containers" and select "Dev Containers: Rebuild and Reopen in Container."
    - The code will load in a development container, providing an isolated environment.
