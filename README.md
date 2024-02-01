@@ -1,7 +1,36 @@
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
 # Open Case Filing System (OCFS)
 >> Under Heavy Construction.
 
-The Open Case Filing System (OCFS) is a state-of-the-art platform designed to enhance court proceedings efficiency. It offers a modern solution for managing court operations, leveraging the latest technology to streamline processes.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+
+  <h1 align="center">Open Case Filing System Api</h1>
+
+  <p align="center">
+    The Open Case Filing System (OCFS) is a state-of-the-art platform designed to enhance court proceedings efficiency. It offers a modern solution for managing court operations, leveraging the latest technology to streamline processes.
+    <br />
+    <a href="https://github.com/federal-courts-software-factory/open-case-filing-system/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/federal-courts-software-factory/open-case-filing-system/issues">Request Feature</a>
+  </p>
+</div>
+
 ### Built With
 
 * [![Rust][Rust]][Rust-url]
@@ -191,7 +220,7 @@ Don't forget to give the project a star! Thanks again!
 [issues-shield]: https://img.shields.io/github/issues/vitorlfaria/rust_clean_api.svg?style=for-the-badge
 [issues-url]: https://github.com/federal-courts-software-factory/open-case-filing-system/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/vitor-lacerda-faria
+[linkedin-url]: [https://linkedin.com/in/tyler-harpool](https://www.linkedin.com/in/tyler-harpool-16a487159/)
 [Rust]: https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white
 [Rust-url]: https://rust-lang.org/
 [Axum]: https://img.shields.io/badge/Axum-d97d0d?style=for-the-badge
