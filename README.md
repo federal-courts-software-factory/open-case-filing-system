@@ -5,16 +5,17 @@ The Open Case Filing System (OCFS) is a state-of-the-art platform designed to en
 ## Getting Started
 
 ### Devcontainer Setup (Recommended)
-Follow these steps to set up OCFS using a development container in Visual Studio Code:
+Follow these steps to set up OCFS using a [development container](https://code.visualstudio.com/docs/devcontainers/containers) in Visual Studio Code:
 
 1. **Prerequisites**:
    - Ensure Docker is running on your local machine.
    - Install Visual Studio Code.
+   - Install [devcontainers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) plugin in VS Code.
    - `git clone git@github.com:federal-courts-software-factory/open-case-filing-system.git`
 
 2. **Setup**:
    - Open Visual Studio Code in the open-case-filing-system directory.
-   - Install the Dev Containers extension if you haven't already
+   - Install the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension if you haven't already
    - Use the hotkey `Ctrl + SHIFT + P`.
    - Search for "dev containers" and select "Dev Containers: Rebuild and Reopen in Container."
    - The code will load in a development container, providing an isolated environment.
