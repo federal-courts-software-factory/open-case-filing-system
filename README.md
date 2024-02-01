@@ -41,6 +41,7 @@ To set up OCFS locally:
      docker-compose up -f .devcontainer/docker-compose.yml
      ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Database Setup
 
 To configure the database:
@@ -62,6 +63,7 @@ To configure the database:
   cargo run
   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Running Tests
 
 Execute tests in a separate window:
@@ -76,6 +78,7 @@ Execute tests in a separate window:
 - `-w`: Watch files for changes
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Database Troubleshooting
 
 If you encounter database issues:
@@ -89,10 +92,12 @@ If you encounter database issues:
 2. If our pipelines are failing because our database isn't connected. We need to run this first. 
 - `cargo sqlx prepare --workspace`
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Architecture
 OCFS employs a cutting-edge tech stack, aiming for high developer productivity and customer satisfaction.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Developing with Kubernetes
 
 ### Minikube for Local Testing and Deployment
@@ -170,6 +175,7 @@ Don't forget to give the project a star! Thanks again!
 - **License Type**: This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
     - ![CC BY 4.0 License Image](https://i.creativecommons.org/l/by/4.0/88x31.png)
     - ![CC BY 4.0 Shield](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
