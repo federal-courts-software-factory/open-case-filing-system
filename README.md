@@ -90,7 +90,6 @@ If you encounter database issues:
 - `cargo sqlx prepare --workspace`
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 ## Architecture
-
 OCFS employs a cutting-edge tech stack, aiming for high developer productivity and customer satisfaction.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -128,6 +127,7 @@ OCFS employs a cutting-edge tech stack, aiming for high developer productivity a
       ```
     - Admin login: use the username, `admin` and use password from kubectl get secret command directly above.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Argocd ApplicationSets
 ### How to Manually apply applicationSets:
 This step should not be needed, but in case somebody didn't run as expected you can always cd into the open case filing system directory on your computer and run the following:  **Notice: --upsert flag** is required if you already applied these applicationSets before.
