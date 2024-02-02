@@ -1,3 +1,6 @@
+
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->'
+<a name="readme-top"></a>
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -11,16 +14,9 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-# Open Case Filing System (OCFS)
->> Under Heavy Construction.
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
 
-  <h1 align="center">Open Case Filing System Api</h1>
+  <h1 align="center">Open Case Filing System </h1>
 
   <p align="center">
     The Open Case Filing System (OCFS) is a state-of-the-art platform designed to enhance court proceedings efficiency. It offers a modern solution for managing court operations, leveraging the latest technology to streamline processes.
@@ -31,6 +27,37 @@
   </p>
 </div>
 
+# Open Case Filing System (OCFS)
+>Under Heavy Construction.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
+<!-- PROJECT LOGO -->
+<br />
+
+## About The Project
+A worthy contender in the race for a replacement to the Case Management / Electronic Case Filing System. 
+
+
 ### Built With
 
 * [![Rust][Rust]][Rust-url]
@@ -39,7 +66,8 @@
   
 ## Getting Started
 
-### Devcontainer Setup (Recommended)
+### Prerequisites 
+**Devcontainer Setup (Recommended)**
 Follow these steps to set up OCFS using a [development container](https://code.visualstudio.com/docs/devcontainers/containers) in Visual Studio Code:
 
 1. **Prerequisites**:
@@ -70,6 +98,8 @@ To set up OCFS locally:
      docker-compose up -f .devcontainer/docker-compose.yml
      ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+# Installation 
 
 ## Database Setup
 
@@ -183,6 +213,8 @@ This step should not be needed, but in case somebody didn't run as expected you 
 ## Web Interface with htmx
 - **Enhanced UI Reactivity**: We plan to use htmx for our web interface. It enhances HTML to increase UI reactivity without the need for JavaScript, leading to faster performance and simplified development.
 
+
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -200,7 +232,7 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Open Case Filing System License
+## License
 - **License Type**: This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
     - ![CC BY 4.0 License Image](https://i.creativecommons.org/l/by/4.0/88x31.png)
     - ![CC BY 4.0 Shield](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)
