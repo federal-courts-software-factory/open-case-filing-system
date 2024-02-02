@@ -79,7 +79,6 @@ Follow these steps to set up OCFS using a [development container](https://code.v
 
 2. **Setup**:
    - Open Visual Studio Code in the open-case-filing-system directory. If you have Visual Studio Code installed in your system path: `code open-case-filing-system`
-   - Install the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension if you haven't already
    - Use the Windows/Linux hotkey: `Ctrl + SHIFT + P` or OSX hotkey: `CMD + SHIFT + P` to open up the window.
    - Search for "dev containers" and select "Dev Containers: Rebuild and Reopen in Container."
    - The code will load in a development container, providing an isolated environment.
@@ -104,6 +103,7 @@ To set up OCFS locally:
 ## Database Setup
 
 To configure the database:
+postgres needs to be running, (type postgres into terminal)
 
 1. Navigate to the API directory:
 - `cd docket-api`
