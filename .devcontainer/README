@@ -3,6 +3,7 @@ version: '3.8'
 volumes:
   postgres-data:
   surrealdb-data:
+
 services:
   app:
     build:
@@ -17,9 +18,11 @@ services:
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
+
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
-
-
+    network_mode: 
+      - service:db
+      - service:surrealdb
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
@@ -32,25 +35,16 @@ services:
     env_file:
         # Ensure that the variables in .env match the same variables in devcontainer.json
         - .env
-    network_mode: service:app
+
     # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-
+## This causes permission issues.
   surrealdb:
-    network_mode: service:app
     image: surrealdb/surrealdb:latest
     restart: unless-stopped
-    user: root
+    command: start --user openCaseFilingSystem --pass T3quilla! file:/data/database.db
     volumes:
-      - surrealdb-data:/workspaces/open-case-filing-system/surealdb-data
-    command: 
-      - start
-      - --log=trace
-      - --user=root
-      - --pass=root
-      - file:/urealdb-data/mydatabase.db
-
-
-networks:
-  rust-local-network:
-    driver: bridge
+      - surrealdb-data:/data
+    env_file:
+        # Ensure that the variables in .env match the same variables in devcontainer.json
+        - .env

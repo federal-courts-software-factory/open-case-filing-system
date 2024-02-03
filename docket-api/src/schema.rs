@@ -30,7 +30,7 @@ pub struct UpdateNoteSchema {
     pub category: Option<String>,
     pub published: Option<bool>,
 }
-
+#[allow(dead_code)]
 pub struct CreateCourtCaseSchema {
     pub case_number: String,
     pub title: String,

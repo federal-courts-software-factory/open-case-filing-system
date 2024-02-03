@@ -4,7 +4,10 @@
 	"name": "Rust and PostgreSQL",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
+	// If you have errors pretaining to workspace not found. Comment out this line and uncomment the following.
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+//	"workspaceFolder": "/workspaces/open-case-filing-system",
+
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
 		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
@@ -13,7 +16,8 @@
 		"ghcr.io/rio/features/k9s:1": {},
 		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
 		"ghcr.io/devcontainers-contrib/features/argo-cd:1": {},
-		"ghcr.io/lee-orr/rusty-dev-containers/cargo-watch:0": []
+		"ghcr.io/lee-orr/rusty-dev-containers/cargo-watch:0": {}
+
 	},
 	"customizations": {
 		"vscode": {
@@ -22,15 +26,18 @@
 			]
 		}
 	},
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
+	//Make sure our surealdb-data volume is created.
+	"initializeCommand": ["scripts/init-pv.sh"],
+	// "mounts": [
+	//   "type=volume,source=surrealdb-data,target=/workspaces/${localWorkspaceFolderBasename}/surrealdb-data"
+	// ],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5432],
+	"forwardPorts": [5432, 8000],
 	// Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "rustc --version && minikube start --driver=docker && kubectl config set-context minikube && kubectl config set-context --current --namespace=argocd && argocd login --core && sleep 15 && kubectl apply -k clusters/core/argocd/overlays/dev-cluster"
-
+    "postCreateCommand": "bash -i scripts/start.sh"
+	// "mounts":  [
+	// 	"source:surrealdb-data, target=/workspace/vscode/open-case-filing-system/surrealdb-data, type=volume"
+	// ]
 	// Configure tool-specific properties.
 	// "customizations": {},
 

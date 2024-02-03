@@ -14,7 +14,7 @@ use crate::{
     schema::{CreateNoteSchema, FilterOptions, UpdateNoteSchema},
     AppState,
 };
-
+#[allow(dead_code)]
 pub async fn homepage() -> impl IntoResponse {
     println!("->> {:<12} - / '200 Ok'", "Homepage"); 
 

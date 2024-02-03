@@ -2,6 +2,7 @@
 members =  [
     "docket-api",
     "web",
-    "common"
+    "common",
+    "rust_clean_api"
 ]
 resolver = "2"
