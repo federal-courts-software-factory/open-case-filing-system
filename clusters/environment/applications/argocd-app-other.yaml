@@ -9,7 +9,7 @@ metadata:
 spec:
   project: demo
   source:
-    path: clusters/environment/storageclass
+    path: clusters/environment/namespaces
     repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
     targetRevision: main
   destination:
@@ -33,7 +33,7 @@ metadata:
 spec:
   project: demo
   source:
-    path: manifests/other/storageclass
+    path: clusters/environment/storageclass
     repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
     targetRevision: main
   destination:
