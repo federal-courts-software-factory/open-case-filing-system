@@ -1,0 +1,26 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: surrealdb
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: demo
+  source:
+    path: clusters/core/surrealdb/installation
+    repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default # This is the target namepsace, and should be defined by resource.
+
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true # Needed for CRDs
+    automated:
+      # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      prune: true
+      # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      selfHeal: true

@@ -1,0 +1,52 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-installation
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: demo
+  source:
+    path: clusters/core/argocd/overlays/dev-cluster
+    repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true # Needed for CRDs
+    automated:
+      # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      prune: true
+      # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-orchestration
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: demo
+  source:
+    path: clusters/environment/applications
+    repoURL: https://github.com/federal-courts-software-factory/open-case-filing-system.git
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true # Needed for CRDs
+    automated:
+      # Specifies if resources should be pruned during auto-syncing ( false by default ).
+      prune: true
+      # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      selfHeal: true

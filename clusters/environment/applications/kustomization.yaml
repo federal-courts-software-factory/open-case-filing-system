@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# resources:
+#   - argocd-proj-demo.yaml
+#   - argocd-app-argocd.yaml
+#   - argocd-app-other.yaml
+#   - argocd-app-surrealdb.yaml
+#   - argocd-app-tikv.yaml

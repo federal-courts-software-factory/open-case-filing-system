@@ -1,0 +1,138 @@
+# Generated with
+#
+# helm template \
+#   --repo https://helm.surrealdb.com \
+#   --set surrealdb.path=tikv://simple-pd.surrealdb-demo:2379 \
+#   surrealdb-tikv \
+#   surrealdb
+#
+# NOTE:
+# Because Helm Chart updates are not happening timely, there have been some
+# modifications made to the specs below.
+# - Update SurrealDB to v1.0.0
+# - Use temporary username and password
+# - Update deployment to be backed by 3 Pods
+#
+# TODO:
+# - Add resource request/limit setup
+#
+
+---
+# Source: surrealdb/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: surrealdb-tikv
+  namespace: surrealdb-demo
+  labels:
+    helm.sh/chart: surrealdb-0.2.0
+    app.kubernetes.io/name: surrealdb
+    app.kubernetes.io/instance: surrealdb-tikv
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: surrealdb/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: surrealdb-tikv
+  namespace: surrealdb-demo
+  labels:
+    helm.sh/chart: surrealdb-0.2.0
+    app.kubernetes.io/name: surrealdb
+    app.kubernetes.io/instance: surrealdb-tikv
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8000
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: surrealdb
+    app.kubernetes.io/instance: surrealdb-tikv
+---
+# Source: surrealdb/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: surrealdb-tikv
+  namespace: surrealdb-demo
+  labels:
+    helm.sh/chart: surrealdb-0.2.0
+    app.kubernetes.io/name: surrealdb
+    app.kubernetes.io/instance: surrealdb-tikv
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: surrealdb
+      app.kubernetes.io/instance: surrealdb-tikv
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: surrealdb
+        app.kubernetes.io/instance: surrealdb-tikv
+    spec:
+      serviceAccountName: surrealdb-tikv
+      securityContext: {}
+      containers:
+        - name: surrealdb
+          securityContext: {}
+          image: "surrealdb/surrealdb:1.0.0"
+          imagePullPolicy: IfNotPresent
+          args:
+            - start
+          env:
+            - name: SURREAL_NO_BANNER
+              value: "true"
+            - name: SURREAL_PATH
+              value: tikv://simple-pd.surrealdb-demo:2379
+            - name: SURREAL_LOG
+              value: info
+            - name: SURREAL_BIND
+              value: 0.0.0.0:8000
+            - name: SURREAL_USER
+              value: root
+            - name: SURREAL_PASS
+              value: surrealdb
+            - name: SURREAL_AUTH
+              value: "true"
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources: {}
+---
+# Source: surrealdb/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "surrealdb-tikv-isready"
+  namespace: surrealdb-demo
+  labels:
+    helm.sh/chart: surrealdb-0.2.0
+    app.kubernetes.io/name: surrealdb
+    app.kubernetes.io/instance: surrealdb-tikv
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: test-isready
+      image: "surrealdb/surrealdb:1.0.0"
+      args: ["isready", "-c", "surrealdb-tikv:8000"]
+  restartPolicy: Never

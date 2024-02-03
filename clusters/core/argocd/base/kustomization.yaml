@@ -12,6 +12,8 @@ images:
 resources:
 - namespace.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+# For High Availability
+#- argocd-ha-installation.yaml
 - argocd-destinationrule.yaml
 - extensions.yaml
 

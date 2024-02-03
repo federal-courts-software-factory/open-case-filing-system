@@ -9,4 +9,8 @@ resources:
 - appsets/dev-docket-api.yaml
 - appsets/dev-web.yaml
 
-# - kaniko/kaniko.yaml
+- applications/argocd-app-argocd.yaml
+- applications/argocd-app-other.yaml
+- applications/argocd-app-surrealdb.yaml
+- applications/argocd-app-tikv.yaml
+- applications/argocd-proj-demo.yaml
