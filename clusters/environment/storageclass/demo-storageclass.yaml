@@ -2,6 +2,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: pd-custom
-provisioner: csi.civo.com
+provisioner: k8s.io/minikube-hostpath
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
