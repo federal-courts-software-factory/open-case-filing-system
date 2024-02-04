@@ -1,27 +1,48 @@
-use axum::Router;
+mod route;
+
+use tracing::info;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+use axum::http::{
+    header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE},
+    HeaderValue, Method,
+};
+// use dotenv::dotenv;
+use route::create_router;
+use tower_http::cors::CorsLayer;
 
 
-use tower_http::services::{ServeDir, ServeFile};
-use dotenv::dotenv;
 
 #[tokio::main]
 async fn main() {
-  // Load environment variables from a .env file.
-  dotenv().ok();
-let routes_all =
-  Router::new()
-  .nest_service(
-      "/", ServeDir::new("dist")
-     .not_found_service(ServeFile::new("dist/index.html"))
- );
+    // Load environment variables from a .env file.
+    // dotenv().ok();
 
+    let num = 10;
+    println!("Hello, world! {num} plus one is {}!", common::add_one(num));
 
- 	// region:    --- Start Server
-   let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-     println!("->> LISTENING on {:?}\n", listener.local_addr());
-     axum::serve(listener, routes_all.into_make_service())
-         .await
-         .unwrap();
-     // endregion: --- Start Server
- 
+    tracing_subscriber::registry()
+        .with(
+            tracing_subscriber::EnvFilter::try_from_default_env()
+                .unwrap_or_else(|_| "web=debug".into()),
+        )
+        .with(tracing_subscriber::fmt::layer())
+        .init();
+
+    info!("hello, web server!");
+
+    // Create a CORS layer to handle Cross-Origin Resource Sharing.
+    let cors = CorsLayer::new()
+        .allow_origin("http://localhost:3000".parse::<HeaderValue>().unwrap())
+        .allow_methods([Method::GET, Method::POST, Method::PATCH, Method::DELETE])
+        .allow_credentials(true)
+        .allow_headers([AUTHORIZATION, ACCEPT, CONTENT_TYPE]);
+    // Create the application router and attach the CORS layer.
+    let app = create_router().layer(cors);
+
+    // Bind the server to listen on the specified address and port.
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await.unwrap();
+    println!("->> LISTENING on {:?}\n", listener.local_addr());
+    // Start serving the application.
+    axum::serve(listener, app).await.unwrap();
 }
