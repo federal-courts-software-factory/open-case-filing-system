@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: web-test
-  name: web-test
+    app: web
+  name: web
   namespace: dev
 spec:
   selector:
     matchLabels:
-      app: web-test
+      app: web
   template:
     metadata:
       labels:
-        app: web-test
+        app: web
     spec:
       serviceAccountName: web-sa
       containers:
       - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web:sha-193abf4
-        name: web-test
+        name: web
         imagePullPolicy: Always
         ports:
             - containerPort: 8080
