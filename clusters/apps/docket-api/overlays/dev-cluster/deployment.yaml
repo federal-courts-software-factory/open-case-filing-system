@@ -20,7 +20,7 @@ spec:
       containers:
         - name: docket-api
           image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api:sha-193abf4
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           resources:

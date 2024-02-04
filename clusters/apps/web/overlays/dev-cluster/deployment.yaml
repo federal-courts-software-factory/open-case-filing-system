@@ -20,7 +20,7 @@ spec:
         name: web-test
         imagePullPolicy: Always
         ports:
-            - containerPort: 3000
+            - containerPort: 8080
         env:
         - name: POSTGRES_DB
           value: "postgres"
