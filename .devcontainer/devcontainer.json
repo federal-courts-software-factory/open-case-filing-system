@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/rust-postgres
 {
-	"name": "Rust and PostgreSQL",
+	"name": "Rust and Surealdb",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	// If you have errors pretaining to workspace not found. Comment out this line and uncomment the following.
@@ -32,7 +32,7 @@
 	//   "type=volume,source=surrealdb-data,target=/workspaces/${localWorkspaceFolderBasename}/surrealdb-data"
 	// ],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [5432, 8000],
+	"forwardPorts": [8000],
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "bash -i scripts/start.sh"
 	// "mounts":  [

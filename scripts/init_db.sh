@@ -1,3 +1,4 @@
+## this is not used, but is here for historical purposes (if we ever go to postgres)
 ## This script can be run locally, but was designed to run to migrate and test our application against github actions.
 #!/usr/bin/env bash
 set -x

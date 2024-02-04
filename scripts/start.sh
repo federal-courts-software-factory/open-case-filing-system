@@ -8,10 +8,12 @@ argocd login --core && \
 sleep 15 && \
 echo "Begin deploying argocd and pulling applications into our minikube cluster" && kubectl apply -k clusters/core/argocd/overlays/dev-cluster
 git config --global --add safe.directory /workspaces/open-case-filing-system
-echo "Migrate Data into our postgres database"
-cd docket-api
-sqlx database create
-sqlx migrate run
+
+# Not required without postgres and the use of sqlx (depcreated, but leaving for history)
+# echo "Migrate Data into our postgres database"
+# cd docket-api
+# sqlx database create
+# sqlx migrate run
 
 
 #curl -sSf https://install.surrealdb.com | sh
