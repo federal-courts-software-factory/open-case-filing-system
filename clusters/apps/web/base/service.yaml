@@ -18,11 +18,11 @@ spec:
   type: ClusterIP
   ports:
   # There is not much notable about our port declaration.
-  # We do perform a port address translation of 80 (HTTP) to 3000.
+  # We do perform a port address translation of 80 (HTTP) to 8080.
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
     appProtocol: http
 ---
 # This service represents the "canary" side of a microservice
@@ -45,11 +45,11 @@ spec:
   type: ClusterIP
   ports:
   # There is not much notable about our port declaration.
-  # We do perform a port address translation of 80 (HTTP) to 3000.
+  # We do perform a port address translation of 80 (HTTP) to 8080.
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
     appProtocol: http
 ---
 apiVersion: v1
@@ -68,5 +68,5 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
     appProtocol: http
