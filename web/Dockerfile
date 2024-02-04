@@ -14,10 +14,10 @@ COPY --from=planner /app/recipe.json recipe.json
 # Notice that we are specifying the --target flag!
 RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
 COPY . .
-RUN cargo build --release --target x86_64-unknown-linux-musl --bin web
+RUN cargo build --release --target x86_64-unknown-linux-musl --bin docket-api
 
 FROM alpine AS runtime
-RUN addgroup -S ocfs && ocfs -S ocfs -G ocfs
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/web /usr/local/bin/
+RUN addgroup -S ocfs && adduser -S ocfs -G ocfs
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/docket-api /usr/local/bin/
 USER ocfs
-CMD ["/usr/local/bin/web"]
+CMD ["/usr/local/bin/docket-api"]

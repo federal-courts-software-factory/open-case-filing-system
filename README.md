@@ -243,13 +243,13 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/vitorlfaria/rust_clean_api.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/federal-courts-software-factory/open-case-filing-system.svg?style=for-the-badge
 [contributors-url]: https://github.com/federal-courts-software-factory/open-case-filing-system/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/vitorlfaria/rust_clean_api.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/federal-courts-software-factory/open-case-filing-system.svg?style=for-the-badge
 [forks-url]: https://github.com/federal-courts-software-factory/open-case-filing-system/network/members
-[stars-shield]: https://img.shields.io/github/stars/vitorlfaria/rust_clean_api.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/vitorlfaria/federal-courts-software-factory/open-case-filing-system.svg?style=for-the-badge
 [stars-url]: https://github.com/federal-courts-software-factory/open-case-filing-system/stargazers
-[issues-shield]: https://img.shields.io/github/issues/vitorlfaria/rust_clean_api.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/vitorlfaria/federal-courts-software-factory/open-case-filing-system.svg?style=for-the-badge
 [issues-url]: https://github.com/federal-courts-software-factory/open-case-filing-system/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: [https://linkedin.com/in/tyler-harpool](https://www.linkedin.com/in/tyler-harpool-16a487159/)
