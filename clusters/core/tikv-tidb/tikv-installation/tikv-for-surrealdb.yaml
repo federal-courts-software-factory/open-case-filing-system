@@ -20,7 +20,7 @@ spec:
     baseImage: pingcap/pd
     maxFailoverCount: 0
     replicas: 3
-    storageClassName: pd-custom
+    storageClassName: pd-standard
     requests:
       storage: "10Gi"
     config: |
@@ -50,7 +50,7 @@ spec:
     baseImage: pingcap/tikv
     maxFailoverCount: 0
     replicas: 3
-    storageClassName: pd-custom
+    storageClassName: pd-standard
     requests:
       storage: "10Gi" # Adjust as necessary
     annotations:
