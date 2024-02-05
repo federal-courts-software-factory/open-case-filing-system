@@ -11,7 +11,7 @@ RUN apt update && apt install lld clang -y
 COPY . .
 # cargo vendor and add the toml configuration to config.offline
 # We can build if crates.io goes offline.
-COPY ./.cargo/config.offline.toml /app/.cargo/config.toml
+
 RUN cargo build --release --bin $PACKAGE
 
 FROM debian:bullseye-slim as runtime
