@@ -1,34 +1,19 @@
-
-ARG PACKAGE=web
-
-FROM rust:1.71.0-slim as builder
-
-ARG PACKAGE
-ENV APP_ENVIRONMENT=production
-
+FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
 WORKDIR /app
-RUN apt update && apt install lld clang -y
+
+FROM chef AS planner
+COPY ./Cargo.toml ./Cargo.lock ./
+COPY ./src ./src
+RUN cargo chef prepare
+
+FROM chef AS builder
+COPY --from=planner /app/recipe.json .
+RUN cargo chef cook --release
 COPY . .
-# cargo vendor and add the toml configuration to config.offline
-# We can build if crates.io goes offline.
+RUN cargo build --release
+RUN mv ./target/release/web ./app
 
-RUN cargo build --release --bin $PACKAGE
-
-FROM debian:bullseye-slim as runtime
-
-ARG PACKAGE
-ENV APP=$PACKAGE
-ENV APP_ENVIRONMENT production
-
+FROM scratch AS runtime
 WORKDIR /app
-RUN apt-get update -y \
-    && apt-get install -y --no-install-recommends openssl ca-certificates \
-    # Clean up
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY --from=builder /app/target/release/$PACKAGE $PACKAGE
-
-
-ENTRYPOINT ["./web"]
+COPY --from=builder /app/app /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/app"]

@@ -19,7 +19,7 @@ async fn main() {
     // dotenv().ok();
 
     let num = 10;
-    println!("Hello, world! {num} plus one is {}!", common::add_one(num));
+    println!("Common lib loaded: {num} plus one is {}!", common::add_one(num));
 
     tracing_subscriber::registry()
         .with(

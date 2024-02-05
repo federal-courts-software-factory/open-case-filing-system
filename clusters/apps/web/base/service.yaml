@@ -15,12 +15,12 @@ spec:
     # This includes inserting a new selector label, "rollouts-pod-template-hash". Its value is set to a random string.
     # Pod labels and the service selector are updated to match to this new label.
     app: web
-  type: ClusterIP
+  type: NodePort
   ports:
   # There is not much notable about our port declaration.
   # We do perform a port address translation of 80 (HTTP) to 8080.
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
     targetPort: 8080
     appProtocol: http
@@ -42,12 +42,12 @@ spec:
     # This includes inserting a new selector label, "rollouts-pod-template-hash". Its value is set to a random string.
     # Pod labels and the service selector are updated to match to this new label.
     app: web
-  type: ClusterIP
+  type: NodePort
   ports:
   # There is not much notable about our port declaration.
   # We do perform a port address translation of 80 (HTTP) to 8080.
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
     targetPort: 8080
     appProtocol: http
@@ -63,10 +63,10 @@ spec:
   selector:
     app: web
     role: stable
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: http
-    port: 80
+    port: 8080
     protocol: TCP
     targetPort: 8080
     appProtocol: http
