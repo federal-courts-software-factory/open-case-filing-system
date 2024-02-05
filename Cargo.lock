@@ -630,7 +630,7 @@ dependencies = [
 [[package]]
 name = "common"
 version = "0.1.0"
-source = "git+https://github.com/federal-courts-software-factory/open-case-filing-system.git#dd8cdfc628db826769bbbd697c6ca2ff07e07a6e"
+source = "git+https://github.com/federal-courts-software-factory/open-case-filing-system.git?branch=main#429f8c687fe978bd03e02313d9852f5c1f549834"
 dependencies = [
  "rand",
 ]
@@ -859,7 +859,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "chrono",
- "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git)",
+ "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git?branch=main)",
  "once_cell",
  "serde",
  "serde_json",
@@ -4046,7 +4046,7 @@ dependencies = [
  "anyhow",
  "askama",
  "axum",
- "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git)",
+ "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git?branch=main)",
  "dotenv",
  "httpc-test",
  "rand",
