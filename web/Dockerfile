@@ -1,20 +1,16 @@
-FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
-WORKDIR /app
+FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
+WORKDIR app
 
 FROM chef AS planner
-COPY Cargo.toml Cargo.toml
-COPY ./src ./src
-RUN cargo chef prepare
+COPY . .
+RUN cargo chef prepare --recipe-path recipe.json
 
 FROM chef AS builder
-COPY --from=planner /app/recipe.json .
-RUN cargo chef cook --release
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
-
 RUN cargo build --release
-RUN mv ./target/release/web ./app
 
-FROM scratch AS runtime
-WORKDIR /app
-COPY --from=builder /app/app /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/app"]
+FROM gcr.io/distroless/cc-debian11
+COPY --from=builder /app/target/release/web /
+CMD ["./web"]
