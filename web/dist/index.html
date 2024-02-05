@@ -1,6 +1,85 @@
-<Head>
-<Title>Open Case Filing System</Title>
-</Head>
+<head>
+    <title>Open Case Filing System</title>
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+
 <body>
     <h1>Welcome to Open Case Filing System - Web</h1>
+
+
+        <button type="button" hx-swap="outerHTML" hx-get="http://localhost:9090/api/todos"
+            hx-request='{"noHeaders": true}'
+            class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Get RAW data
+        </button>
+
+    <template id="foo">
+        {{#each todos}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+        {{/each}}
+    </template>
+    <table class="container" hx-ext="client-side-templates" hx-get="http://localhost:9090/api/todos" hx-swap="innerHTML"
+        hx-target="tbody" hx-trigger="every 2s"  handlebars-array-template="foo">
+        <thead>
+            <th>Title</th>
+            <th>content</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <template id="foo">
+        {{#each this}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+        {{/each}}
+    </template>
+
+    <form
+    hx-post="http://127.0.0.1:9090/api/todos"
+    hx-target="#todos"
+    hx-swap="innerHTML"
+    hx-ext='json-enc'
+    class="max-w-md"
+>
+    <label for="todo" class="block text-sm font-medium leading-6 text-gray-900"
+        >Todo</label
+    >
+    <div class="mt-2 inline-flex flex-row space-x-2">
+        <input
+            type="text"
+            name="title"
+            id="title"
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            placeholder="add a title"
+        />
+        <input
+        type="textbox"
+        name="content"
+        id="content"
+        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        placeholder="Add your content"
+    />
+        <button
+            type="submit"
+            
+            class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+            Add
+        </button>
+    </div>
+</form>
+<div id="todos" />
 </body>
