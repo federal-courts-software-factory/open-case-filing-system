@@ -7,7 +7,7 @@ RUN mkdir ./src && echo 'fn main() {}' > ./src/main.rs
 RUN cargo build --release
 # Replace with real src
 RUN rm -rf ./src
-COPY ./src ./src
+COPY . .
 # break the Cargo cache
 RUN touch ./src/main.rs
 # Build the project
