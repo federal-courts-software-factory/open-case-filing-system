@@ -1,7 +1,9 @@
-use docket_api::{api::router::create_router, infrastructure::data::db_context::surreal_context::connect_db};
 use axum::http::{
     header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE},
     HeaderValue, Method,
+};
+use docket_api::{
+    api::router::create_router, infrastructure::data::db_context::surreal_context::connect_db,
 };
 use tower_http::cors::CorsLayer;
 

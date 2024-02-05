@@ -1,13 +1,15 @@
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use chrono::Local;
 
-use crate::{domain::models::todo::Todo, infrastructure::data::repositories::todo_repository::TodoRepository};
+use crate::{
+    domain::models::todo::Todo, infrastructure::data::repositories::todo_repository::TodoRepository,
+};
 
 pub async fn create_todo_command(
     Json(mut body): Json<Todo>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
     let repository = TodoRepository::new();
-    
+
     if let Ok(todo) = repository.get_by_title(body.title.clone()).await {
         let json_response = serde_json::json!({
             "status": "error".to_string(),

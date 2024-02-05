@@ -1,7 +1,7 @@
 use axum::{response::IntoResponse, Json};
 
 use crate::{
-    infrastructure::data::repositories::todo_repository::TodoRepository, domain::models::todo::Todo,
+    domain::models::todo::Todo, infrastructure::data::repositories::todo_repository::TodoRepository,
 };
 
 pub async fn get_all_todos_query() -> impl IntoResponse {

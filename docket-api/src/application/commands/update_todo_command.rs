@@ -2,11 +2,10 @@ use axum::{extract::Path, http::StatusCode, response::IntoResponse, Json};
 use chrono::Local;
 
 use crate::{
-    infrastructure::data::repositories::todo_repository::TodoRepository, domain::models::todo::Todo,
+    domain::models::todo::Todo, infrastructure::data::repositories::todo_repository::TodoRepository,
 };
 
 use super::requests::update_todo_request::UpdateTodoRequest;
-
 
 pub async fn update_todo_command(
     Path(id): Path<String>,

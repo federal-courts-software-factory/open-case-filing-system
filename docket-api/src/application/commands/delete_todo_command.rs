@@ -1,4 +1,4 @@
-use axum::{extract::Path, response::IntoResponse, http::StatusCode, Json};
+use axum::{extract::Path, http::StatusCode, response::IntoResponse, Json};
 
 use crate::infrastructure::data::repositories::todo_repository::TodoRepository;
 

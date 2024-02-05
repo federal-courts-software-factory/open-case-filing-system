@@ -11,15 +11,16 @@ use axum::http::{
 use route::create_router;
 use tower_http::cors::CorsLayer;
 
-
-
 #[tokio::main]
 async fn main() {
     // Load environment variables from a .env file.
     // dotenv().ok();
 
     let num = 10;
-    println!("Common lib loaded: {num} plus one is {}!", common::add_one(num));
+    println!(
+        "Common lib loaded: {num} plus one is {}!",
+        common::add_one(num)
+    );
 
     tracing_subscriber::registry()
         .with(

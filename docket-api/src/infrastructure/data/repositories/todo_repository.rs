@@ -22,14 +22,10 @@ impl TodoRepository {
             return Ok(record);
         }
 
-        let error = Error::Db(
-            Thrown(
-                format!("Todo with id {} not found", id)
-            )
-        );
+        let error = Error::Db(Thrown(format!("Todo with id {} not found", id)));
         Err(error)
     }
-    
+
     pub async fn get_by_title(&self, title: String) -> Result<Todo, Error> {
         if let Some(record) = DB
             .query("SELECT * FROM todo WHERE title = $title")

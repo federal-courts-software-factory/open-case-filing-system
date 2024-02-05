@@ -14,8 +14,6 @@ RUN cargo build --release
 RUN mv ./target/release/docket-api ./app
 
 FROM scratch AS runtime
-RUN addgroup -S ocfs && adduser -S ocfs -G ocfs
 WORKDIR /app
 COPY --from=builder /app/app /usr/local/bin/
-USER ocfs
 ENTRYPOINT ["/usr/local/bin/app"]
