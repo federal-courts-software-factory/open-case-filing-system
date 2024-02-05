@@ -16,11 +16,16 @@ if [ ! -d "$FOLDER" ] ; then
     git clone "$URL" "$FOLDER"
 fi
 kubectl apply -k /workspaces/ocfs-environment/clusters/core/argocd/overlays/dev-cluster
-# kubectl -n argocd patch secret argocd-secret \
+sleep 5s
+kubectl apply -k /workspaces/ocfs-environment/clusters/environment
+
+# "echo change password to ocfs"
+# kubectl -n argocd patch secret argocd-secret \ 
 #   -p '{"stringData": {
-#     "admin.password": "$2a$10$rRyBsGSHK6.uc8fntPwVIuLVHgsAhAX7TcdrqW/RADU0uh7CaChLa",
+#     "admin.password": "$2a$10$20NWiUi26nF8hJnLbE6SluYLSNb31BinRh.gxCd1di327aDezXBhm",
 #     "admin.passwordMtime": "'$(date +%FT%T%Z)'"
 #   }}'
+
 echo "Argocd initial admin secret is:"
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 # Not required without postgres and the use of sqlx (depcreated, but leaving for history)
