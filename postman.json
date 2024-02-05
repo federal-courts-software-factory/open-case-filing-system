@@ -7,167 +7,10 @@
 	},
 	"item": [
 		{
-			"name": "postgres",
+			"name": "docket-api",
 			"item": [
 				{
-					"name": "Create Court Case",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n              \"case_id\": \"2024-01-25-0bdd23eb2380d8493f052a41d521695b\",\r\n              \"title\": \"UNITED STATES V. SMITH\",\r\n              \"filing_date\": \"2024-01-25\",\r\n              \"status\": \"Open\",\r\n              \"courtroom_id\": \"19f9d587-3233-4b2b-b98d-5bddc37972df\",\r\n              \"scheduled_date\": \"2035-01-25\"\r\n\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/court_case/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"court_case",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get  Court Case by id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"court_cases",
-								"19f9d587-3233-4b2b-b98d-5bddc37972df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Health Checker",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/api/healthchecker",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"healthchecker"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update  Court Case",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n              \"case_id\": \"2024-01-25-0bdd23eb2380d8493f052a41d521695b\",\r\n              \"title\": \"UNITED STATES V. John Doe\",\r\n              \"filing_date\": \"2024-01-25\",\r\n              \"status\": \"Closed\",\r\n\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"court_cases",
-								"19f9d587-3233-4b2b-b98d-5bddc37972df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete  Case",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/api/court_cases/19f9d587-3233-4b2b-b98d-5bddc37972df",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"court_cases",
-								"19f9d587-3233-4b2b-b98d-5bddc37972df"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All  Court Cases",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8000/api/court_cases?page=1&limit=10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"api",
-								"court_cases"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "limit",
-									"value": "10"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "surealdb",
-			"item": [
-				{
-					"name": "Post Todo Copy",
+					"name": "Post Todo",
 					"event": [
 						{
 							"listen": "test",
@@ -194,10 +37,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/todos",
+							"raw": "http://localhost:8080/api/todos",
+							"protocol": "http",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"api",
 								"todos"
@@ -208,7 +53,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Todo Copy",
+					"name": "Get Todo",
 					"event": [
 						{
 							"listen": "test",
@@ -250,7 +95,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Todo by id Copy",
+					"name": "Get Todo by id",
 					"event": [
 						{
 							"listen": "test",
@@ -278,14 +123,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/todos/ycu5imn2g5fee8jm5yzx",
+							"raw": "{{base_url}}/api/todos/5fz4zmgqc196m2sghdv9",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"todos",
-								"ycu5imn2g5fee8jm5yzx"
+								"5fz4zmgqc196m2sghdv9"
 							]
 						},
 						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -293,7 +138,7 @@
 					"response": []
 				},
 				{
-					"name": "Update data Copy",
+					"name": "Update data",
 					"event": [
 						{
 							"listen": "test",
@@ -313,7 +158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+							"raw": "{\n\t\"completed\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,18 +166,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/info?id=1",
+							"raw": "{{base_url}}/api/todos/qa00utnf7tzy7bfo5jpb",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"info"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"api",
+								"todos",
+								"qa00utnf7tzy7bfo5jpb"
 							]
 						},
 						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
@@ -340,7 +181,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete data Copy",
+					"name": "Delete data",
 					"event": [
 						{
 							"listen": "test",
@@ -383,6 +224,1647 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "surrealdb",
+			"item": [
+				{
+					"name": "/health",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/health",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Checks the status of the database server and storage engine."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/health",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/health",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/export",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/octet-stream",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/export",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"export"
+							]
+						},
+						"description": "Checks the status of the database server and storage engine."
+					},
+					"response": [
+						{
+							"name": "/export",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "test",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "test",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/export",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"export"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": "-- ------------------------------\n-- OPTION\n-- ------------------------------\n\nOPTION IMPORT;\n\n-- ------------------------------\n-- TABLE: person\n-- ------------------------------\n\nDEFINE TABLE person SCHEMALESS PERMISSIONS NONE;\n\n-- ------------------------------\n-- TRANSACTION\n-- ------------------------------\n\nBEGIN TRANSACTION;\n\n-- ------------------------------\n-- TABLE DATA: person\n-- ------------------------------\n\nUPDATE person:one CONTENT { id: person:one, name: 'Joe Bloggs' };\nUPDATE person:test CONTENT { account: account:test, id: person:test, tester: true };\nUPDATE person:two CONTENT { id: person:two, name: 'Elizabeth Hurdle' };\n\n-- ------------------------------\n-- TRANSACTION\n-- ------------------------------\n\nCOMMIT TRANSACTION;\n\n"
+						}
+					]
+				},
+				{
+					"name": "/import",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/octet-stream",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{endpoint}}/import",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"import"
+							]
+						},
+						"description": "Checks the status of the database server and storage engine."
+					},
+					"response": [
+						{
+							"name": "/import",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/octet-stream",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "-- ------------------------------\n-- OPTION\n-- ------------------------------\n\nOPTION IMPORT;\n\n-- ------------------------------\n-- TABLE: person\n-- ------------------------------\n\nDEFINE TABLE person SCHEMALESS PERMISSIONS NONE;\n\n-- ------------------------------\n-- TRANSACTION\n-- ------------------------------\n\nBEGIN TRANSACTION;\n\n-- ------------------------------\n-- TABLE DATA: person\n-- ------------------------------\n\nUPDATE person:one CONTENT { id: person:one, name: 'Joe Bloggs' };\nUPDATE person:two CONTENT { id: person:two, name: 'Elizabeth Hurdle' };\n\n-- ------------------------------\n-- TRANSACTION\n-- ------------------------------\n\nCOMMIT TRANSACTION;\n\n"
+								},
+								"url": {
+									"raw": "{{endpoint}}/import",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"import"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/key/:table",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table to select records from"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint selects all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::table($table);\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{endpoint}}/key/:table",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table to select records from"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    age: 30,\n    name: 'John',\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint creates a record in a specific table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::table($table) CONTENT $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    age: 30,\n    name: 'Anon',\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint updates all records in a specific table in the database. It replaces the record content with the supplied request data, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) CONTENT $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint updates all records in a specific table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) MERGE $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/key/:table",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint deletes all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::table($table);\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{endpoint}}/key/:table",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table/:id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/key/:table/:id",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "",
+									"description": "The table to select records from"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"description": "The id of the record to select"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint selects a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::thing($table, $id);\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table/:id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/key/:table/:id",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"key",
+										":table",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table to select records from"
+										},
+										{
+											"key": "id",
+											"value": "test",
+											"description": "The id of the record to select"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "version",
+									"value": "surreal-1.0.0-beta.8"
+								},
+								{
+									"key": "server",
+									"value": "SurrealDB"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 20 Jul 2022 09:55:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"time\": \"817.291µs\",\n        \"status\": \"OK\",\n        \"result\": [\n            {\n                \"id\": \"person:test\",\n                \"some\": true\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "/key/:table/:id",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    age: 30,\n    name: 'Simon',\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table/:id",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								},
+								{
+									"key": "id",
+									"value": "test",
+									"description": "The id of the record to create"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint creates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::thing($table, $id) CONTENT $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table/:id",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table/:id",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										},
+										{
+											"key": "id",
+											"value": "test",
+											"description": "The id of the record to create"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    tags: $tags,\n}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table/:id?tags=['rust', 'developer']",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table",
+								":id"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "['rust', 'developer']"
+								}
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": null
+								},
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint updates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) CONTENT $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table/:id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table/:id",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										},
+										{
+											"key": "id",
+											"value": "test",
+											"description": "The id of the record to create"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/key/:table/:id",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								},
+								{
+									"key": "id",
+									"value": "test",
+									"description": "The id of the record to create"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint updates a specific record in a table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) MERGE $body;\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table/:id",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    account: account:test,\n    tester: true,\n}",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{endpoint}}/key/:table/:id",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										},
+										{
+											"key": "id",
+											"value": "test",
+											"description": "The id of the record to create"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/key/:table/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/key/:table/:id",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"key",
+								":table",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "table",
+									"value": "person",
+									"description": "The table where the record should be created"
+								},
+								{
+									"key": "id",
+									"value": "test",
+									"description": "The id of the record to create"
+								}
+							]
+						},
+						"description": "This HTTP RESTful endpoint deletes a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::thing($table, $id);\n\n```"
+					},
+					"response": [
+						{
+							"name": "/key/:table/:id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{endpoint}}/key/:table/:id",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"key",
+										":table",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "table",
+											"value": "person",
+											"description": "The table where the record should be created"
+										},
+										{
+											"key": "id",
+											"value": "test",
+											"description": "The id of the record to create"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/sql",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							},
+							{
+								"key": "NS",
+								"value": "{{namespace}}",
+								"description": "Sets the selected Namespace for queries",
+								"type": "text"
+							},
+							{
+								"key": "DB",
+								"value": "{{database}}",
+								"description": "Sets the selected Database for queries",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "SELECT * FROM person"
+						},
+						"url": {
+							"raw": "{{endpoint}}/sql",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"sql"
+							]
+						},
+						"description": "The SQL endpoint enables running advanced SurrealQL queries. This HTTP endpoint expects the HTTP body to be one or more SurrealQL statements, separated by a semicolon."
+					},
+					"response": [
+						{
+							"name": "/sql",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									},
+									{
+										"key": "NS",
+										"value": "{{namespace}}",
+										"description": "Sets the selected Namespace for queries",
+										"type": "text"
+									},
+									{
+										"key": "DB",
+										"value": "{{database}}",
+										"description": "Sets the selected Database for queries",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "BEGIN TRANSACTION;\nUPDATE person:one SET name = 'Joe Bloggs';\nUPDATE person:two SET name = 'Elizabeth Hurdle';\nLET $people = SELECT * FROM person;\nRETURN $people;\nCOMMIT TRANSACTION;"
+								},
+								"url": {
+									"raw": "{{endpoint}}/sql",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"sql"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{endpoint}}/status",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"status"
+							]
+						},
+						"description": "Checks whether the database web server is running."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{endpoint}}/status",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{endpoint}}/status",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"status"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/version",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain",
+								"description": "Sets the desired content-type of the response",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{endpoint}}/version",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"version"
+							]
+						},
+						"description": "Returns the version of the SurrealDB database server."
+					},
+					"response": [
+						{
+							"name": "/version",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain",
+										"description": "Sets the desired content-type of the response",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{endpoint}}/version",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"version"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\"user\":\"john\", \"pass\":\"VerySecurePassword!\"}\n{\n    \"NS\": \"todo\",\n    \"DB\": \"todo\",\n    \"user\": \"mary\",\n    \"pass\": \"VerySecurePassword!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/signin",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NS\": \"todo\",\n    \"DB\": \"todo\",\n    \"SC\": \"user\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@doe.org\",\n    \"password\": \"VerySecurePassword!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/signup",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "http://localhost:8000"
 		}
 	]
 }
