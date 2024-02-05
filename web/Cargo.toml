@@ -19,7 +19,7 @@ common = { git = "https://github.com/federal-courts-software-factory/open-case-f
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 askama = "0.12.1"
-
+rand = "0.8.5"
 
 [dev-dependencies]
 anyhow = "1.0.48"

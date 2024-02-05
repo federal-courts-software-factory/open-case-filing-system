@@ -1,23 +1,19 @@
-# Using the `rust-musl-builder` as base image, instead of 
-# the official Rust toolchain
-FROM clux/muslrust:stable AS chef
-USER root
-RUN cargo install cargo-chef
+FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
 WORKDIR /app
 
 FROM chef AS planner
-COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
+COPY ./Cargo.toml ./Cargo.lock ./
+COPY ./src ./src
+RUN cargo chef prepare
 
 FROM chef AS builder
-COPY --from=planner /app/recipe.json recipe.json
-# Notice that we are specifying the --target flag!
-RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
+COPY --from=planner /app/recipe.json .
+RUN cargo chef cook --release
 COPY . .
-RUN cargo build --release --target x86_64-unknown-linux-musl --bin web
+RUN cargo build --release
+RUN mv ./target/release/web ./app
 
-FROM alpine AS runtime
-RUN addgroup -S ocfs && adduser -S ocfs -G ocfs
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/web /usr/local/bin/
-USER ocfs
-CMD ["/usr/local/bin/web"]
+FROM scratch AS runtime
+WORKDIR /app
+COPY --from=builder /app/app /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/app"]
