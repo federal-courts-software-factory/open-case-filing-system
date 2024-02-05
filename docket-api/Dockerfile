@@ -2,15 +2,15 @@ FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
 WORKDIR /app
 
 FROM chef AS planner
-COPY ./Cargo.toml ./Cargo.lock ./
-COPY ./src ./src
+COPY Cargo.toml Cargo.toml
+COPY . .
 RUN cargo chef prepare
 
 FROM chef AS builder
-
 COPY --from=planner /app/recipe.json .
 RUN cargo chef cook --release
 COPY . .
+
 RUN cargo build --release
 RUN mv ./target/release/docket-api ./app
 
