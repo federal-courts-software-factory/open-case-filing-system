@@ -2,14 +2,19 @@ FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
 WORKDIR /app
 
 FROM chef AS planner
-COPY ./Cargo.toml ./Cargo.lock ./
+COPY Cargo.toml Cargo.toml
 COPY ./src ./src
+RUN cargo remove common -v
+RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
 RUN cargo chef prepare
 
 FROM chef AS builder
 COPY --from=planner /app/recipe.json .
 RUN cargo chef cook --release
 COPY . .
+RUN cargo remove common -v
+RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
+
 RUN cargo build --release
 RUN mv ./target/release/web ./app
 
