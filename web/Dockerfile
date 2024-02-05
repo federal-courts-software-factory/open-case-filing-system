@@ -1,16 +1,19 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
-WORKDIR app
-
-FROM chef AS planner
-COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
-
-FROM chef AS builder
-COPY --from=planner /app/recipe.json recipe.json
-RUN cargo chef cook --release --recipe-path recipe.json
-COPY . .
+# Build stage
+FROM rust:bookworm as builder
+WORKDIR /usr/src/app
+# Build dependencies
+COPY Cargo.toml Cargo.lock ./
+RUN mkdir ./src && echo 'fn main() {}' > ./src/main.rs
 RUN cargo build --release
-
-FROM gcr.io/distroless/cc-debian11
-COPY --from=builder /app/target/release/web /
-CMD ["./web"]
+# Replace with real src
+RUN rm -rf ./src
+COPY ./src ./src
+# break the Cargo cache
+RUN touch ./src/main.rs
+# Build the project
+RUN cargo build --release
+# Run stage
+FROM debian:bookworm-slim as run
+RUN apt-get update && apt install -y openssl && rm -rf /var/lib/apt/lists/* && apt-get clean
+COPY --from=builder /usr/src/app/target/release/web /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/web"]
