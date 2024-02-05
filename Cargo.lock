@@ -630,7 +630,7 @@ dependencies = [
 [[package]]
 name = "common"
 version = "0.1.0"
-source = "git+https://github.com/federal-courts-software-factory/open-case-filing-system.git#6a5966c8bd22610fd3d0362811906a5cd755a610"
+source = "git+https://github.com/federal-courts-software-factory/open-case-filing-system.git#3c08638a8ab123728722a05be95de5383cb600d4"
 dependencies = [
  "rand",
 ]
