@@ -14,12 +14,12 @@ dotenv = "0.15.0"
 tokio = { version = "1.27.0", features = ["full"] }
 tower-http = { version = "0.5.0", features = ["cors", "fs"] }
 # Importing our own common lib
-common = { git = "https://github.com/federal-courts-software-factory/open-case-filing-system.git", branch = "main"}
 #common = {path = "../common"}
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
 askama = "0.12.1"
 rand = "0.8.5"
+common = { git = "https://github.com/federal-courts-software-factory/open-case-filing-system.git", version = "0.1.0" }
 
 [dev-dependencies]
 anyhow = "1.0.48"
