@@ -1,37 +1,16 @@
-ARG PACKAGE=docket-api
-FROM lukemathwalker/cargo-chef:latest-rust-1.71.0 as chef
-WORKDIR /app
-RUN apt update && apt install lld clang -y
-FROM chef as planner
+FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
+WORKDIR app
+
+FROM chef AS planner
 COPY . .
-# Compute a lock-like file for our project
 RUN cargo chef prepare --recipe-path recipe.json
 
-FROM chef as builder
-ARG PACKAGE
+FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
-# Build our project dependencies, not our application!
 RUN cargo chef cook --release --recipe-path recipe.json
-# Up to this point, if our dependency tree stays the same,
-# all layers should be cached.
 COPY . .
-ENV APP_ENVIRONMENT=production
-
-# Build our project
-
-RUN cargo build --release --bin $PACKAGE
-
-FROM debian:bullseye-slim AS runtime
-ARG PACKAGE
-ENV APP=$PACKAGE
-ENV APP_ENVIRONMENT=production
-WORKDIR /app
-RUN apt-get update -y \
-  && apt-get install -y --no-install-recommends openssl ca-certificates \
-
-  && apt-get autoremove -y \
-  && apt-get clean -y \
-  && rm -rf /var/lib/apt/lists/*
-COPY --from=builder /app/target/release/$PACKAGE $PACKAGE
-
-ENTRYPOINT ["./docket-api"]
+RUN cargo build --release
+EXPOSE 3000
+FROM gcr.io/distroless/cc-debian11
+COPY --from=builder /app/target/release/docket-api /
+CMD ["./docket-api"]
