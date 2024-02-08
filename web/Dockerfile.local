@@ -18,7 +18,7 @@ RUN strip target/release/web
 FROM gcr.io/distroless/cc-debian12 as release
 WORKDIR /app
 COPY --from=builder /app/target/release/web .
-COPY dist/index.html ./dist/index.html
+COPY ./dist ./dist
 
 EXPOSE 3000
 
