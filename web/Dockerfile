@@ -1,34 +1,25 @@
-
 ARG PACKAGE=web
-
-FROM rust:1.71.0-slim as builder
-
-ARG PACKAGE
-
+FROM rust:1.71.1 as builder
 WORKDIR /app
-#RUN apt update && apt install lld clang -y
-COPY . .
-# cargo vendor and add the toml configuration to config.offline
-# We can build if crates.io goes offline.
+
+COPY Cargo.toml .
+RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo remove common -v
+RUN cargo build --release --bin web
+
+COPY src src
+RUN touch src/main.rs
+
 RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
+RUN cargo build --release --bin web
 
-RUN cargo build --release --bin $PACKAGE
+RUN strip target/release/web
 
-FROM debian:bullseye-slim as runtime
-
-ARG PACKAGE
-ENV APP=$PACKAGE
-
+FROM gcr.io/distroless/cc-debian12 as release
 WORKDIR /app
-# RUN apt-get update -y \
-#     && apt-get install -y --no-install-recommends openssl ca-certificates \
-#     # Clean up
-#     && apt-get autoremove -y \
-#     && apt-get clean -y \
-#     && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /app/target/release/web .
 COPY ./dist ./dist
-COPY --from=builder /app/target/release/$PACKAGE $PACKAGE
 
+EXPOSE 3000
 
-ENTRYPOINT ["./web"]
+CMD ["./web"]
