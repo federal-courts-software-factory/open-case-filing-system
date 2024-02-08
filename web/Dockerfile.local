@@ -1,24 +1,25 @@
-FROM lukemathwalker/cargo-chef:latest-rust-alpine as chef
+ARG PACKAGE=web
+FROM rust:1.71.1 as builder
 WORKDIR /app
 
-FROM chef AS planner
-COPY Cargo.toml Cargo.toml
-COPY ./src ./src
+COPY Cargo.toml .
+RUN mkdir src && echo "fn main() {}" > src/main.rs
 RUN cargo remove common -v
+RUN cargo build --release --bin web
+
+COPY src src
+RUN touch src/main.rs
+
 RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
-RUN cargo chef prepare
+RUN cargo build --release --bin web
 
-FROM chef AS builder
-COPY --from=planner /app/recipe.json .
-RUN cargo chef cook --release
-COPY . .
-RUN cargo remove common -v
-RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
+RUN strip target/release/web
 
-RUN cargo build --release
-RUN mv ./target/release/web ./app
-
-FROM scratch AS runtime
+FROM gcr.io/distroless/cc-debian12 as release
 WORKDIR /app
-COPY --from=builder /app/app /usr/local/bin/
-ENTRYPOINT ["/usr/local/bin/app"]
+COPY --from=builder /app/target/release/web .
+COPY dist/index.html ./dist/index.html
+
+EXPOSE 3000
+
+CMD ["./web"]

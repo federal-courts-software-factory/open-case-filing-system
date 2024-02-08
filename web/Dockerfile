@@ -1,23 +1,34 @@
-# Using the `rust-musl-builder` as base image, instead of 
-# the official Rust toolchain
-FROM clux/muslrust:stable AS chef
-USER root
-RUN cargo install cargo-chef
+
+ARG PACKAGE=web
+
+FROM rust:1.71.0-slim as builder
+
+ARG PACKAGE
+
 WORKDIR /app
-
-FROM chef AS planner
+#RUN apt update && apt install lld clang -y
 COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
+# cargo vendor and add the toml configuration to config.offline
+# We can build if crates.io goes offline.
+RUN cargo remove common -v
+RUN cargo add --git https://github.com/federal-courts-software-factory/open-case-filing-system.git common
 
-FROM chef AS builder
-COPY --from=planner /app/recipe.json recipe.json
-# Notice that we are specifying the --target flag!
-RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
-COPY . .
-RUN cargo build --release --target x86_64-unknown-linux-musl --bin web
+RUN cargo build --release --bin $PACKAGE
 
-FROM alpine AS runtime
-RUN addgroup -S ocfs && adduser -S ocfs -G ocfs
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/web /usr/local/bin/
-USER ocfs
-CMD ["/usr/local/bin/web"]
+FROM debian:bullseye-slim as runtime
+
+ARG PACKAGE
+ENV APP=$PACKAGE
+
+WORKDIR /app
+# RUN apt-get update -y \
+#     && apt-get install -y --no-install-recommends openssl ca-certificates \
+#     # Clean up
+#     && apt-get autoremove -y \
+#     && apt-get clean -y \
+#     && rm -rf /var/lib/apt/lists/*
+COPY ./dist ./dist
+COPY --from=builder /app/target/release/$PACKAGE $PACKAGE
+
+
+ENTRYPOINT ["./web"]

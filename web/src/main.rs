@@ -1,12 +1,7 @@
 mod route;
-
+use tokio::signal;
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-
-use axum::http::{
-    header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE},
-    HeaderValue, Method,
-};
 // use dotenv::dotenv;
 use tower_http::cors::CorsLayer;
 
@@ -32,17 +27,43 @@ async fn main() {
     info!("hello, web server!");
 
     // Create a CORS layer to handle Cross-Origin Resource Sharing.
-    let cors = CorsLayer::new()
-        .allow_origin("http://0.0.0.0:3000".parse::<HeaderValue>().unwrap())
-        .allow_methods([Method::GET, Method::POST, Method::PATCH, Method::DELETE])
-        .allow_credentials(true)
-        .allow_headers([AUTHORIZATION, ACCEPT, CONTENT_TYPE]);
+
     // Create the application router and attach the CORS layer.
-    let app = route::create_index().layer(cors);
+    let app = route::create_index().layer(CorsLayer::permissive());
+
 
     // Bind the server to listen on the specified address and port.
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     println!("->> LISTENING on {:?}\n", listener.local_addr());
     // Start serving the application.
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app)
+    .with_graceful_shutdown(shutdown_signal())
+    .await.unwrap();
+
+    
+}
+
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
+    }
 }

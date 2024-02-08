@@ -20,4 +20,5 @@ FROM alpine AS runtime
 RUN addgroup -S ocfs && adduser -S ocfs -G ocfs
 COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/docket-api /usr/local/bin/
 USER ocfs
+EXPOSE 9090
 CMD ["/usr/local/bin/docket-api"]

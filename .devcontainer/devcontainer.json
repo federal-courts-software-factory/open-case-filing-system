@@ -32,7 +32,7 @@
 	//   "type=volume,source=surrealdb-data,target=/workspaces/${localWorkspaceFolderBasename}/surrealdb-data"
 	// ],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8000, 8080],
+	"forwardPorts": [8000, 8080, 3000, 9090],
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "bash -i scripts/start.sh"
 	// "mounts":  [
