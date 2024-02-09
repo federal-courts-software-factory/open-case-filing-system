@@ -1,24 +1,18 @@
-ARG PACKAGE=web
-FROM rust:1.71.1 as builder
-WORKDIR /app
+FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
+WORKDIR app
 
-COPY Cargo.toml .
-RUN mkdir src && echo "fn main() {}" > src/main.rs
+FROM chef AS planner
+COPY src  src
+COPY Cargo.toml  .
+RUN cargo chef prepare --recipe-path recipe.json
 
-RUN cargo build --release --bin web
+FROM chef AS builder
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json
+COPY . .
+RUN cargo build --release
 
-COPY src src
-RUN touch src/main.rs
-
-RUN cargo build --release --bin web
-
-RUN strip target/release/web
-
-FROM gcr.io/distroless/cc-debian12 as release
-WORKDIR /app
-COPY --from=builder /app/target/release/web .
-COPY ./dist ./dist
-
-EXPOSE 3000
-
+FROM gcr.io/distroless/cc-debian11
+COPY --from=builder /app/target/release/web /
+COPY --from=builder /app/dist /dist
 CMD ["./web"]
