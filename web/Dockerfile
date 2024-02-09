@@ -1,8 +1,8 @@
 FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
-WORKDIR app
+WORKDIR /app
 
 FROM chef AS planner
-
+COPY src  src
 COPY Cargo.toml  .
 RUN cargo chef prepare --recipe-path recipe.json
 
