@@ -16,7 +16,7 @@
     <h1>Welcome to Open Case Filing System - Web</h1>
 
 
-        <button type="button" hx-swap="outerHTML" hx-get="http://localhost:9090/api/todos"
+        <button type="button" hx-swap="outerHTML" hx-get="http://localhost:9091/api/todos"
             hx-request='{"noHeaders": true}'
             class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Get RAW data
@@ -30,7 +30,7 @@
         </tr>
         {{/each}}
     </template>
-    <table class="container" hx-ext="client-side-templates" hx-get="http://localhost:9090/api/todos" hx-swap="innerHTML"
+    <table class="container" hx-ext="client-side-templates" hx-get="http://localhost:9091/api/todos" hx-swap="innerHTML"
         hx-target="tbody" hx-trigger="every 2s"  handlebars-array-template="foo">
         <thead>
             <th>Title</th>
@@ -48,7 +48,7 @@
     </template>
 
     <form
-    hx-post="http://127.0.0.1:9090/api/todos"
+    hx-post="http://127.0.0.1:9091/api/todos"
     hx-target="#todos"
     hx-swap="innerHTML"
     hx-ext='json-enc'

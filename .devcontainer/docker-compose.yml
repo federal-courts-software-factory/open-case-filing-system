@@ -48,6 +48,6 @@ services:
       - --log=trace
       - --user=root
       - --pass=root
-      - file:/urealdb-data/mydatabase.db
+      - file:/surealdb-data/mydatabase.db
 
 
