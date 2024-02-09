@@ -7,8 +7,10 @@ use tower_http::cors::CorsLayer;
 
 #[tokio::main]
 async fn main() {
-    // Load environment variables from a .env file.
-    // dotenv().ok();
+    /*
+    Load environment variables from a .env file.
+    dotenv().ok();
+    */
 
     let num = 10;
     println!(
