@@ -2,7 +2,7 @@ FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
 WORKDIR /app
 
 FROM chef AS planner
-COPY docket-api/src  .
+COPY .  .
 RUN cargo chef prepare --recipe-path recipe.json
 
 FROM chef AS builder
@@ -13,5 +13,5 @@ RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian11
 COPY --from=builder /app/target/release/docket-api /
-COPY --from=builder /app/docket-api/dist /
+COPY --from=builder /app/docket-api/dist /dist
 CMD ["./docket-api"]
