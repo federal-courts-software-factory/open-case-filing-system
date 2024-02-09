@@ -31,18 +31,15 @@ async fn main() {
     // Create the application router and attach the CORS layer.
     let app = route::create_index().layer(CorsLayer::permissive());
 
-
     // Bind the server to listen on the specified address and port.
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     println!("->> LISTENING on {:?}\n", listener.local_addr());
     // Start serving the application.
     axum::serve(listener, app)
-    .with_graceful_shutdown(shutdown_signal())
-    .await.unwrap();
-
-    
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+        .unwrap();
 }
-
 
 async fn shutdown_signal() {
     let ctrl_c = async {
