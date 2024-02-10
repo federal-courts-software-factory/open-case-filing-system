@@ -5,17 +5,17 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   CARGO_TERM_COLOR: always
+  SQLX_VERSION: 0.6.2
+  SQLX_FEATURES: "rustls,postgres"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: docket-api  
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest    
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - linux/amd64
-          # - linux/arm/v6 # not supported
-          # - linux/arm/v7 # not supported
-          - linux/arm64
         include:
           - dockerfile: ./web/Dockerfile
             image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
@@ -58,18 +58,13 @@ jobs:
           images: ${{ matrix.image }}        
           # generate Docker tags based on the following events/attributes
           tags: |
+            type=schedule
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-          labels: |
-            maintainer=Tyler Harpool
-            org.opencontainers.image.title=Open Case Filing System
-            org.opencontainers.image.description=An open source case management system
-            org.opencontainers.image.vendor=Federal Courts Software Factory
-        env:
-          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
-
+            type=semver,pattern={{major}}
+            type=sha   
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -87,7 +82,7 @@ jobs:
         with:
           context: .
           file: ${{ matrix.dockerfile }}
-          platforms: ${{ matrix.platform }}
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
