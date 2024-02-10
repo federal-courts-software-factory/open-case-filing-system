@@ -125,3 +125,5 @@ common/target/debug/
 
 .cargo/
 .vscode/
+
+surealdb-data/
