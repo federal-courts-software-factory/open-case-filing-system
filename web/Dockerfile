@@ -8,7 +8,8 @@ RUN cargo chef prepare --recipe-path recipe.json
 FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
-COPY . .
+COPY src dist /app/web/
+
 RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian11
