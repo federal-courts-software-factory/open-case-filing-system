@@ -21,6 +21,7 @@ kubectl apply -k /workspaces/ocfs-environment/clusters/core/argocd/overlays/dev-
 #     "admin.password": "$2a$10$rRyBsGSHK6.uc8fntPwVIuLVHgsAhAX7TcdrqW/RADU0uh7CaChLa",
 #     "admin.passwordMtime": "'$(date +%FT%T%Z)'"
 #   }}'
+sleep 2s
 echo "Argocd initial admin secret is:"
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 # Not required without postgres and the use of sqlx (depcreated, but leaving for history)
