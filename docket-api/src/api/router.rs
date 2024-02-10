@@ -17,7 +17,7 @@ use super::health_checker_handler;
 
 pub fn create_router() -> Router {
     Router::new()
-        .route("/api/healthchecker", get(health_checker_handler))
+        .route("/api/health", get(health_checker_handler))
         .route(
             "/api/todos",
             post(create_todo_command).get(get_all_todos_query),
