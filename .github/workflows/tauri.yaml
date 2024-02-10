@@ -46,3 +46,4 @@ jobs:
           releaseDraft: true
           prerelease: false
           updaterJsonPreferNsis: false
+          updaterJsonKeepUniversal: true
