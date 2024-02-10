@@ -1,6 +1,7 @@
 name: Build & publish Open Case Filing System
-on: push
- workflow_dispatch:
+on:
+  push:
+  workflow_dispatch:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
