@@ -67,6 +67,8 @@ jobs:
             org.opencontainers.image.title=Open Case Filing System
             org.opencontainers.image.description=An open source case management system
             org.opencontainers.image.vendor=Federal Courts Software Factory
+          env:
+            DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
 
 
       - name: Set up QEMU
