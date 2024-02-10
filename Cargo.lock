@@ -628,6 +628,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "common"
+version = "0.1.0"
+source = "git+https://github.com/federal-courts-software-factory/open-case-filing-system.git#5c36cc0e6c5c83d644fd15d99a6784a25b4783e4"
+dependencies = [
+ "rand",
+]
+
+[[package]]
 name = "concurrent-queue"
 version = "2.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -851,7 +859,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "chrono",
- "common",
+ "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git)",
  "once_cell",
  "serde",
  "serde_json",
@@ -4038,7 +4046,7 @@ dependencies = [
  "anyhow",
  "askama",
  "axum",
- "common",
+ "common 0.1.0 (git+https://github.com/federal-courts-software-factory/open-case-filing-system.git)",
  "dotenv",
  "httpc-test",
  "rand",
