@@ -1,4 +1,4 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1.70.0 as chef
+FROM lukemathwalker/cargo-chef:latest-rust-1.72.0 as chef
 WORKDIR /app
 
 FROM chef AS planner
@@ -8,7 +8,7 @@ RUN cargo chef prepare --recipe-path recipe.json
 FROM chef AS builder
 
 COPY --from=planner /app/recipe.json recipe.json
-COPY --from=planner /app/common common/
+COPY --from=planner /app/common /
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY src src
 
