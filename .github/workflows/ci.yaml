@@ -28,7 +28,7 @@ jobs:
           - image: ghcr.io/username/image1ghcr.io/federal-courts-software-factory/open-case-filing-system/web
             working-directory: web
          # - dockerfile: ./docket-api/Dockerfile
-          -  image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+          - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
             working-directory: docket-api
           #  app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
 
