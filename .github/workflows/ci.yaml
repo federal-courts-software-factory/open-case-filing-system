@@ -24,11 +24,14 @@ jobs:
           - ./docket-api/Dockerfile
 
         include:
-          - working-directory: web
+         # - dockerfile: ./web/Dockerfile
+          -  image: ghcr.io/username/image1ghcr.io/federal-courts-software-factory/open-case-filing-system/web
+            working-directory: web
+         # - dockerfile: ./docket-api/Dockerfile
+          -  image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+            working-directory: docket-api
           #  app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
-          - working-directory: docket-api
-          - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
-          - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+
 
     permissions:
       contents: read
