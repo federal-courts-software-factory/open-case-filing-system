@@ -19,15 +19,14 @@ jobs:
           #- linux/arm/v6 # Not Supported
           #- linux/arm/v7 # Not Supported
           - linux/arm64
+        dockerfile:
+          - ./web/Dockerfile
+          - ./docket-api/Dockerfile
         include:
-          - dockerfile: ./web/Dockerfile
-            image: ghcr.io/federal-courts-software-factory/open-case-filing-system/web
-            working-directory: web
-            app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
-          - dockerfile: ./docket-api/Dockerfile
-            image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
-            working-directory: docket-api
-            app: clusters/apps/docket-api/overlays/dev-cluster/deployment.yaml
+          - working-directory: web
+          #  app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
+          - working-directory: docket-api
+
     permissions:
       contents: read
       packages: write
