@@ -37,7 +37,7 @@ jobs:
           working-directory: ${{matrix.working-directory}}
         
   build-and-push-image:
-    depends: testing
+    needs: testing
     runs-on: ubuntu-latest    
     strategy:
       fail-fast: false
