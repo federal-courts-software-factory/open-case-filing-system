@@ -1,0 +1,41 @@
+# Configures the default task to run
+[tasks.default]
+alias = "build-containers"
+
+# Overrides the default build task
+[tasks.build]
+alias = "build-containers"
+
+[tasks.build-one]
+workspace = false
+script = '''
+docker build --rm --target web .
+docker tag $(docker image ls -q --filter=label=service=web) ghcr.io/federal-courts-software-factory/open-case-filing-system/web
+'''
+
+[tasks.docket-api]
+workspace = false
+script = """
+docker build --rm --target docket-api .
+docker tag $(docker image ls -q --filter=label=service=docket-api)  ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+"""
+
+[tasks.build-containers]
+workspace = false
+dependencies = [
+    "docket-api",
+    "web"
+]
+
+[tasks.push-containers]
+workspace = false
+script = '''
+echo "Implementing docker push (not done)"
+'''
+
+[tasks.delete-containers]
+workspace = false
+script = '''
+docker image rm $(docker image ls -q --filter=label=service=web)
+docker image rm $(docker image ls -q --filter=label=service=docket-api)
+'''

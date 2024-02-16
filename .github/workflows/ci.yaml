@@ -9,34 +9,13 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   CARGO_TERM_COLOR: always
 jobs:
-  build-and-push-image:
-    runs-on: ubuntu-latest    
-    strategy:
+  testing:
+    runs-on: ubuntu-latest
+    strategy: 
       fail-fast: false
-      matrix:
-        platform:
-          - linux/amd64
-          #- linux/arm/v6 # Not Supported
-          #- linux/arm/v7 # Not Supported
-          - linux/arm64
-        dockerfile:
-          - ./web/Dockerfile
-          - ./docket-api/Dockerfile
-
-        include:
-         # - dockerfile: ./web/Dockerfile
-          - image: ghcr.io/username/image1ghcr.io/federal-courts-software-factory/open-case-filing-system/web
-            working-directory: web
-         # - dockerfile: ./docket-api/Dockerfile
-          - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
-            working-directory: docket-api
-          #  app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
-
-
-    permissions:
-      contents: read
-      packages: write
-
+        matrix:
+          platform: ["linux/amd64", "linux/arm64"]
+          working-directory: ["web", "docket-api"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -56,7 +35,37 @@ jobs:
         with:
           args: --all-features  
           working-directory: ${{matrix.working-directory}}
+        
+  build-and-push-image:
+    runs-on: ubuntu-latest    
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - linux/amd64
+          #- linux/arm/v6 # Not Supported
+          #- linux/arm/v7 # Not Supported
+          - linux/arm64
+        dockerfile:
+          - ./Dockerfile
 
+        include:
+         # - dockerfile: ./web/Dockerfile
+          - image: ghcr.io/username/image1ghcr.io/federal-courts-software-factory/open-case-filing-system/web
+            working-directory: web
+         # - dockerfile: ./docket-api/Dockerfile
+          - image: ghcr.io/federal-courts-software-factory/open-case-filing-system/docket-api
+            working-directory: docket-api
+          #  app: clusters/apps/web/overlays/dev-cluster/deployment.yaml
+
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -75,8 +84,6 @@ jobs:
             org.opencontainers.image.title=Open Case Filing System
             org.opencontainers.image.description=An open source case management system
             org.opencontainers.image.vendor=Federal Courts Software Factory
-        env:
-          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
