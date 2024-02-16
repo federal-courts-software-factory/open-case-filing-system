@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       fail-fast: false
-        matrix:
+      matrix:
           platform: ["linux/amd64", "linux/arm64"]
           working-directory: ["web", "docket-api"]
     steps:
