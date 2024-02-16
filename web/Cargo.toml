@@ -28,6 +28,4 @@ anyhow = "1.0.48"
 httpc-test = "0.1.1"
 
 
-[build]
-target = [ "arm64e-apple-darwin", "x86_64-unknown-linux-gnu" ]
 
