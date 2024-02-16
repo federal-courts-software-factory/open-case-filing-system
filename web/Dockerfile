@@ -15,6 +15,6 @@ RUN cargo build --release --target-dir /
 RUN ls / && echo && ls /app
 
 FROM gcr.io/distroless/cc-debian11
-COPY --from=builder /app /
+COPY --from=builder /app/target/release/web /web 
 COPY --from=builder /app/dist /dist
 CMD ["./web"]

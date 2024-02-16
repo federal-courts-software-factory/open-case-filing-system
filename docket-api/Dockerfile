@@ -12,6 +12,6 @@ COPY . .
 RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian11
-COPY --from=builder /app/target/release/docket-api /
+COPY --from=builder /app/target/release/docket-api /docket-api
 COPY --from=builder /app/dist /dist
 CMD ["./docket-api"]
