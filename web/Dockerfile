@@ -10,10 +10,10 @@ FROM chef AS builder
 COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
-
-RUN cargo build --release
+RUN ls && ls /app
+RUN cargo build --release --target-dir /
 
 FROM gcr.io/distroless/cc-debian11
-COPY --from=builder /app/target/release/web /
+COPY --from=builder / /
 COPY --from=builder /app/dist /dist
 CMD ["./web"]
