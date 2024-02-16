@@ -11,8 +11,8 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN ls && ls /app && $pwd
-RUN cargo build --release --target-dir /
-RUN ls / && echo && ls /app
+RUN cargo build --release
+RUN ls / && echo && ls /app && echo && ls /app/target && echo && ls /app/target/release
 
 FROM gcr.io/distroless/cc-debian11
 COPY --from=builder /app/target/release/web /web 
