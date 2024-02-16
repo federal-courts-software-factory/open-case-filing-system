@@ -17,8 +17,8 @@
 		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
 		"ghcr.io/devcontainers-contrib/features/argo-cd:1": {},
 		"ghcr.io/lee-orr/rusty-dev-containers/cargo-watch:0": {},
-		"ghcr.io/devcontainers-contrib/features/devcontainers-cli:1",
-		"ghcr.io/lee-orr/rusty-dev-containers/cargo-make:0": {}
+		"ghcr.io/devcontainers-contrib/features/devcontainers-cli:1"
+	//	"ghcr.io/lee-orr/rusty-dev-containers/cargo-make:0": {}
 
 	},
 	"customizations": {
