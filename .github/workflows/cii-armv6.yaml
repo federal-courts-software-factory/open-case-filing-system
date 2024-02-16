@@ -1,4 +1,4 @@
-name: Build & publish OCFS (amd64)
+name: Build & publish OCFS (armv6)
 on:
   push:
       paths-ignore:
